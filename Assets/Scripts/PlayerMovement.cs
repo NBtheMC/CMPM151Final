@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 20f;
-    public Rigidbody2D rb;
-    public Camera cam;
+    [SerializeField]
+    private float moveSpeed = 20f;
+    private Rigidbody2D rb;
 
     Vector2 movement;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     // Start is called before the first frame update
     void Update()
