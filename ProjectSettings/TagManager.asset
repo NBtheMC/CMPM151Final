@@ -13,14 +13,14 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PlayerHitbox
+  - EnemyHitbox
+  - PlayerHurtbox
+  - EnemyHurtbox
+  - Null
+  - Collision
+  - Terrain
+  - Pushbox
   - 
   - 
   - 
