@@ -1,1 +1,47 @@
-#N canvas 317 281 450 300 12;
+#N canvas 120 247 450 300 12;
+#X obj 11 7 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X msg 11 32 \; pd dsp \$1;
+#X obj 55 219 noise~;
+#X obj 56 278 *~;
+#X obj 58 479 dac~;
+#X obj 165 80 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 165 105 t b b;
+#X obj 141 132 del 30;
+#X msg 142 156 0, f 2;
+#X msg 197 157 1, f 2;
+#X obj 142 180 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 55 308 delwrite~ del 500;
+#X obj 280 215 delread4~ del;
+#X floatatom 280 192 5 0 0 0 - - -;
+#X obj 279 258 *~ 0.99;
+#X obj 196 367 vsl 15 128 0 0.05 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X floatatom 279 69 5 0 0 0 - - -;
+#X obj 277 102 mtof;
+#X obj 279 144 expr 1000/$f1;
+#X obj 59 453 *~;
+#X text 338 66 midi note;
+#X text 228 430 volume slider;
+#X connect 0 0 1 0;
+#X connect 2 0 3 0;
+#X connect 3 0 11 0;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 6 1 9 0;
+#X connect 7 0 8 0;
+#X connect 8 0 10 0;
+#X connect 9 0 10 0;
+#X connect 10 0 3 1;
+#X connect 12 0 14 0;
+#X connect 12 0 19 0;
+#X connect 13 0 12 0;
+#X connect 14 0 11 0;
+#X connect 15 0 19 1;
+#X connect 16 0 17 0;
+#X connect 17 0 18 0;
+#X connect 18 0 13 0;
+#X connect 19 0 4 0;
+#X connect 19 0 4 1;
