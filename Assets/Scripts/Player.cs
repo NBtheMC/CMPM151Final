@@ -13,14 +13,22 @@ public class Player : MonoBehaviour
     private GameObject musicBullet;
     [SerializeField]
     private Camera cam;
-    private float bulletForce = 20f;
+    [SerializeField]
+    private Transform firePoint;
+    private float bulletForce = 1f;
     private float countdown = .10f;
+    //cursor stuff
+    [SerializeField]
+    private Texture2D cursorTexture;
+    private CursorMode cursorMode = CursorMode.Auto;
+    private Vector2 hotSpot = Vector2.zero;
 
     Vector2 movement;
     Vector2 mousePos;  //cursor
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
     }
 
     // Start is called before the first frame update
@@ -42,6 +50,7 @@ public class Player : MonoBehaviour
             countdown = .10f; //reset countdown after shooting 
         }
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        firePoint.transform.LookAt(mousePos);
     }
 
     // FixedUpdate used for physics and rigidbodies and stuff
@@ -56,9 +65,9 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
-        GameObject note = Instantiate(musicBullet,GetComponent<Transform>().position, GetComponent<Transform>().rotation);
+        GameObject note = Instantiate(musicBullet,firePoint.position, firePoint.rotation);
         Rigidbody2D rb = note.GetComponent<Rigidbody2D>();
-        rb.AddForce(GetComponent<Transform>().position* bulletForce,ForceMode2D.Impulse);
+        rb.AddForce(firePoint.position* bulletForce,ForceMode2D.Impulse);
 
     }
 }
