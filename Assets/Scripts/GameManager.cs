@@ -5,13 +5,45 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    private static GameManager _instance;
+    public static GameManager Instance //Singleton Stuff
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                Debug.Log("Game Manager is Null");
+            }
+            return _instance;
+        }
+    }
+
     //OSC stuff
     [SerializeField]
     private Text countText = null;
     private int count;
 
+    Player player;
+    Transform playerTransform;
+    GameObject playerObject;
+    GameObject firepoint;
+    GameObject mouse;
+
+    void Awake()
+    {
+        _instance = this; //singleton, lets anyobject call it without getting the component stuff
+
+        playerObject = GameObject.Find("Player");
+        player = GameObject.Find("Player").GetComponent<Player>();
+        playerTransform = player.transform;
+        firepoint = GameObject.Find("FirePoint");
+        mouse = GameObject.Find("Mouse");
+    }
+
     void Start()
     {
+        //UnityEngine.Cursor.visble = false;
+
         //OSC stuff
         OSCHandler.Instance.Init();
         OSCHandler.Instance.SendMessageToClient("pd", "/unity/trigger", "ready");
@@ -53,5 +85,15 @@ public class GameManager : MonoBehaviour
         //************* Send the message to the client...
         OSCHandler.Instance.SendMessageToClient("pd", "/unity/trigger", count);
         //*************
+    }
+
+    public Vector2 GetPlayerLocation()
+    {
+        return (Vector2)playerObject.transform.position;
+    }
+
+    public Vector2 FireToCursor()
+    {
+        return (Vector2)(mouse.transform.position - firepoint.transform.position);
     }
 }
