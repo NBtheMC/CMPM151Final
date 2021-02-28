@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //UnityEngine.Cursor.visble = false;
+        UnityEngine.Cursor.visible = false;
 
         //OSC stuff
         OSCHandler.Instance.Init();
