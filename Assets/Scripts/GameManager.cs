@@ -96,4 +96,9 @@ public class GameManager : MonoBehaviour
     {
         return (Vector2)(mouse.transform.position - firepoint.transform.position);
     }
+
+    public void DamageGeneral(Damageable d, float damage, Vector2 hitForce)//attack tells GM to damage target.
+    {
+        d.Hurt(damage, hitForce);
+    }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Saxnote : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 0, damage = 0;
+    private float speed = 0, damage = 0, knockback = 0;
     private Rigidbody2D rb2D;
 
 
@@ -14,14 +14,28 @@ public class Saxnote : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         var dir = GameManager.Instance.FireToCursor();
         dir.Normalize();
-        //var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
-        //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
         rb2D.AddForce(dir * speed, ForceMode2D.Impulse);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Damageable d = collision.transform.root.GetComponent<Damageable>();
+        if (d != null)
+        {
+            Vector2 hitForce = rb2D.velocity;
+            hitForce.Normalize();
+            hitForce *= knockback;
+
+            if (rb2D.velocity.x < 0)
+            {
+                hitForce = Vector2.Reflect(hitForce, Vector2.right);
+            }
+            GameManager.Instance.DamageGeneral(d, damage, hitForce);
+        }
+        Destroy(this.gameObject);//Add in an animation and add it to a pool for better performance
     }
 }

@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : CharaDamage
 {
-    [SerializeField]
-    private float moveSpeed = 20f;
-    private Rigidbody2D rb;
 
     [SerializeField]
     private GameObject musicBullet = null;
@@ -16,13 +13,8 @@ public class Player : MonoBehaviour
     private Vector2 hotSpot = Vector2.zero;
 
     Vector2 movement;
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
 
-    // Start is called before the first frame update
-    void Update()
+    protected override void Update()
     {
         //Input
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -39,16 +31,16 @@ public class Player : MonoBehaviour
             Shoot();
             countdown = .10f; //reset countdown after shooting 
         }
+        base.Update();
     }
 
-    // FixedUpdate used for physics and rigidbodies and stuff
-    void FixedUpdate()
+    protected void FixedUpdate()
     {
         //Actual movement
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 
-    void Shoot()
+    protected void Shoot()
     {
         GameObject note = Instantiate(musicBullet,firePoint.position, Quaternion.Euler(0, 0, 0));
     }
