@@ -1,47 +1,251 @@
-#N canvas -1635 255 910 562 12;
-#X obj 11 7 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
-;
-#X msg 11 32 \; pd dsp \$1;
-#X obj 55 219 noise~;
-#X obj 56 278 *~;
-#X obj 58 479 dac~;
-#X obj 165 80 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#N canvas -8 -8 1920 997 12;
+#X obj 504 238 noise~;
+#X obj 505 297 *~;
+#X obj 507 498 dac~;
+#X obj 614 99 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 165 105 t b b;
-#X obj 141 132 del 30;
-#X msg 142 156 0, f 2;
-#X msg 197 157 1, f 2;
-#X obj 142 180 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 614 124 t b b;
+#X obj 590 151 del 30;
+#X msg 591 175 0, f 2;
+#X msg 646 176 1, f 2;
+#X obj 591 199 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 55 308 delwrite~ del 500;
-#X obj 280 215 delread4~ del;
-#X floatatom 280 192 5 0 0 0 - - -;
-#X obj 279 258 *~ 0.99;
-#X obj 196 367 vsl 15 128 0 0.05 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 6700 1;
-#X floatatom 279 69 5 0 0 0 - - -;
-#X obj 277 102 mtof;
-#X obj 279 144 expr 1000/$f1;
-#X obj 59 453 *~;
-#X text 338 66 midi note;
-#X text 228 430 volume slider;
+#X obj 504 327 delwrite~ del 500;
+#X obj 729 234 delread4~ del;
+#X floatatom 729 211 5 0 0 0 - - -;
+#X obj 728 277 *~ 0.99;
+#X obj 645 386 vsl 15 128 0 0.05 0 0 empty empty Volume_Slider 0 -9
+0 10 -262144 -1 -1 0 1;
+#X floatatom 728 88 5 0 0 0 midi_note - -;
+#X obj 726 121 mtof;
+#X obj 728 163 expr 1000/$f1;
+#X obj 508 472 *~;
+#X text 191 280 creation arguments are OSC address;
+#X text 179 238 set message to change OSC address;
+#X text 164 48 1 Set IP Address : network address;
+#X text 164 68 2 Set Ports (sending and listening);
+#X text 164 87 3 Set OSC Addresses (routing osc data;
+#X text 155 26 Key Settings;
+#X floatatom 43 194 5 0 0 0 - - -;
+#N canvas 524 386 623 462 oscReceive 0;
+#X obj 55 184 netreceive -u -b;
+#X msg 78 143 listen 0;
+#X text 152 143 stop listening;
+#X text 64 58 packets from network;
+#X text 173 177 UDP packets \, binary output, f 13;
+#X obj 45 314 print;
+#X obj 45 272 oscparse;
+#X text 150 114 listen on port 8000;
+#X obj 177 269 oscparse;
+#X obj 177 293 list trim;
+#X floatatom 140 380 5 0 0 0 - - -;
+#X text 241 267 Parse the OSC message;
+#X obj 177 319 route unity;
+#X obj 66 84 loadbang;
+#X obj 413 148 netreceive -u -b;
+#X msg 66 115 listen 6162;
+#X obj 139 357 route test;
+#X obj 140 407 s test;
+#X connect 0 0 6 0;
+#X connect 0 0 8 0;
+#X connect 1 0 0 0;
+#X connect 6 0 5 0;
+#X connect 8 0 9 0;
+#X connect 9 0 12 0;
+#X connect 10 0 17 0;
+#X connect 12 0 16 0;
+#X connect 13 0 15 0;
+#X connect 15 0 0 0;
+#X connect 16 0 10 0;
+#X restore 47 142 pd oscReceive;
+#X obj 47 36 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X msg 47 61 \; pd dsp \$1;
+#X obj 44 278 oscformat PD message;
+#X msg 76 239 set PD message;
+#N canvas 727 97 450 300 oscSend 0;
+#X msg 158 207 disconnect;
+#X obj 61 253 netsend -u -b;
+#X obj 59 55 list prepend send;
+#X obj 59 80 list trim;
+#X obj 59 29 r oscOut;
+#X text 301 163 send to port 8001;
+#X obj 147 108 loadbang;
+#X msg 147 148 connect localhost 6969;
+#X msg 150 175 connect 127.0.0.1 6969;
 #X connect 0 0 1 0;
 #X connect 2 0 3 0;
-#X connect 3 0 11 0;
-#X connect 5 0 6 0;
+#X connect 3 0 1 0;
+#X connect 4 0 2 0;
 #X connect 6 0 7 0;
-#X connect 6 1 9 0;
+#X connect 7 0 1 0;
+#X connect 8 0 1 0;
+#X restore 47 118 pd oscSend;
+#X obj 44 313 s oscOut;
+#X obj 292 416 r test;
+#X msg 279 478 activated;
+#X obj 278 507 print;
+#X obj 280 445 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 1654 315 5 0 0 1 Milliseconds - -;
+#X obj 1621 310 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 1585 338 stop;
+#X obj 1622 357 metro;
+#X obj 1606 375 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 1527 582 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+1 1;
+#X obj 1521 558 hradio 15 1 0 16 empty empty empty 0 -8 0 10 -262144
+-1 -1 5;
+#X obj 1542 582 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 1557 582 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 1572 582 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 1587 582 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 1602 582 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 1617 582 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 1632 582 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 1647 582 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 1662 582 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 1677 582 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 1692 582 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 1707 582 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 1722 582 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 1737 582 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 1752 582 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 1622 434 +;
+#X obj 1653 404 + 1;
+#X obj 1622 463 % 16;
+#X floatatom 1622 489 5 0 0 0 - - -;
+#X obj 1521 604 sel 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15;
+#X obj 1521 637 spigot;
+#X obj 1538 658 spigot;
+#X obj 1556 679 spigot;
+#X obj 1574 700 spigot;
+#X obj 1592 636 spigot;
+#X obj 1609 657 spigot;
+#X obj 1627 678 spigot;
+#X obj 1645 699 spigot;
+#X obj 1664 636 spigot;
+#X obj 1681 657 spigot;
+#X obj 1699 678 spigot;
+#X obj 1717 699 spigot;
+#X obj 1734 634 spigot;
+#X obj 1751 655 spigot;
+#X obj 1769 676 spigot;
+#X obj 1787 697 spigot;
+#X floatatom 1318 161 5 0 0 0 Overall_Tempo - -;
+#X text 1540 211 Saxophone notes;
+#X text 1540 238 may have to make several for multiple enemies;
+#X obj 1098 254 * 4;
+#X floatatom 1088 324 5 0 0 1 Milliseconds - -;
+#X obj 1055 319 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 1019 347 stop;
+#X obj 1056 366 metro;
+#X obj 1040 384 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 1056 443 +;
+#X obj 1087 413 + 1;
+#X floatatom 1056 498 5 0 0 0 - - -;
+#X obj 1056 472 % 4;
+#X text 978 220 Violin notes;
+#X text 979 244 root notes(?);
+#X obj 1056 525 sel 0 1 2 3;
+#X connect 0 0 1 0;
+#X connect 1 0 9 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 4 1 7 0;
+#X connect 5 0 6 0;
+#X connect 6 0 8 0;
 #X connect 7 0 8 0;
-#X connect 8 0 10 0;
-#X connect 9 0 10 0;
-#X connect 10 0 3 1;
-#X connect 12 0 14 0;
-#X connect 12 0 19 0;
-#X connect 13 0 12 0;
-#X connect 14 0 11 0;
-#X connect 15 0 19 1;
-#X connect 16 0 17 0;
-#X connect 17 0 18 0;
-#X connect 18 0 13 0;
-#X connect 19 0 4 0;
-#X connect 19 0 4 1;
+#X connect 8 0 1 1;
+#X connect 10 0 12 0;
+#X connect 10 0 17 0;
+#X connect 11 0 10 0;
+#X connect 12 0 9 0;
+#X connect 13 0 17 1;
+#X connect 14 0 15 0;
+#X connect 15 0 16 0;
+#X connect 16 0 11 0;
+#X connect 17 0 2 0;
+#X connect 17 0 2 1;
+#X connect 24 0 28 0;
+#X connect 26 0 27 0;
+#X connect 28 0 31 0;
+#X connect 29 0 28 0;
+#X connect 32 0 35 0;
+#X connect 33 0 34 0;
+#X connect 35 0 33 0;
+#X connect 36 0 39 1;
+#X connect 37 0 39 0;
+#X connect 38 0 39 0;
+#X connect 39 0 40 0;
+#X connect 39 0 58 0;
+#X connect 41 0 63 1;
+#X connect 42 0 62 0;
+#X connect 43 0 64 1;
+#X connect 44 0 65 1;
+#X connect 45 0 66 1;
+#X connect 46 0 67 1;
+#X connect 47 0 68 1;
+#X connect 48 0 69 1;
+#X connect 49 0 70 1;
+#X connect 50 0 71 0;
+#X connect 51 0 72 0;
+#X connect 52 0 73 0;
+#X connect 53 0 74 0;
+#X connect 54 0 75 0;
+#X connect 55 0 76 0;
+#X connect 56 0 77 0;
+#X connect 57 0 78 0;
+#X connect 58 0 59 0;
+#X connect 58 0 60 0;
+#X connect 59 0 58 1;
+#X connect 60 0 61 0;
+#X connect 61 0 42 0;
+#X connect 62 0 63 0;
+#X connect 62 1 64 0;
+#X connect 62 2 65 0;
+#X connect 62 3 66 0;
+#X connect 62 4 67 0;
+#X connect 62 5 68 0;
+#X connect 62 6 69 0;
+#X connect 62 7 70 0;
+#X connect 62 8 71 0;
+#X connect 62 9 72 0;
+#X connect 62 10 73 0;
+#X connect 62 11 74 0;
+#X connect 62 12 75 0;
+#X connect 62 13 76 0;
+#X connect 62 14 77 0;
+#X connect 62 15 78 0;
+#X connect 79 0 36 0;
+#X connect 79 0 82 0;
+#X connect 82 0 83 0;
+#X connect 83 0 86 1;
+#X connect 84 0 86 0;
+#X connect 85 0 86 0;
+#X connect 86 0 87 0;
+#X connect 86 0 88 0;
+#X connect 88 0 89 0;
+#X connect 88 0 91 0;
+#X connect 89 0 88 1;
+#X connect 90 0 94 0;
+#X connect 91 0 90 0;
