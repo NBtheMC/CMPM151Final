@@ -1,4 +1,4 @@
-#N canvas -8 -8 1920 997 12;
+#N canvas -1928 79 1920 997 12;
 #X obj 142 520 dac~;
 #X obj 158 433 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -10,7 +10,7 @@
 #X text 164 87 3 Set OSC Addresses (routing osc data;
 #X text 155 26 Key Settings;
 #X floatatom 43 194 5 0 0 0 - - -;
-#N canvas 524 386 623 462 oscReceive 0;
+#N canvas 358 411 913 462 oscReceive 0;
 #X obj 55 184 netreceive -u -b;
 #X msg 78 143 listen 0;
 #X text 152 143 stop listening;
@@ -21,14 +21,29 @@
 #X text 150 114 listen on port 8000;
 #X obj 177 269 oscparse;
 #X obj 177 293 list trim;
-#X floatatom 140 380 5 0 0 0 - - -;
+#X floatatom 44 389 5 0 0 0 - - -;
 #X text 241 267 Parse the OSC message;
 #X obj 177 319 route unity;
 #X obj 66 84 loadbang;
 #X obj 413 148 netreceive -u -b;
 #X msg 66 115 listen 6162;
-#X obj 139 357 route test;
-#X obj 140 407 s test;
+#X obj 43 366 route test;
+#X obj 44 416 s test;
+#X floatatom 137 389 5 0 0 0 - - -;
+#X obj 136 366 route tempo;
+#X obj 137 416 s tempo;
+#X obj 235 391 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 360 391 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 234 364 route start_stop;
+#X obj 235 414 s start_stop;
+#X obj 359 364 route violin_spawn;
+#X obj 360 414 s violin_spawn;
+#X obj 494 391 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 493 364 route violin_die;
+#X obj 494 414 s violin_die;
 #X connect 0 0 6 0;
 #X connect 0 0 8 0;
 #X connect 1 0 0 0;
@@ -37,9 +52,21 @@
 #X connect 9 0 12 0;
 #X connect 10 0 17 0;
 #X connect 12 0 16 0;
+#X connect 12 0 19 0;
+#X connect 12 0 23 0;
+#X connect 12 0 25 0;
+#X connect 12 0 28 0;
 #X connect 13 0 15 0;
 #X connect 15 0 0 0;
 #X connect 16 0 10 0;
+#X connect 18 0 20 0;
+#X connect 19 0 18 0;
+#X connect 21 0 24 0;
+#X connect 22 0 26 0;
+#X connect 23 0 21 0;
+#X connect 25 0 22 0;
+#X connect 27 0 29 0;
+#X connect 28 0 27 0;
 #X restore 47 142 pd oscReceive;
 #X obj 47 36 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
@@ -503,7 +530,6 @@
 #X obj 777 104 tgl 15 0 empty empty behind 17 7 0 10 -262144 -1 -1
 0 1;
 #X obj 687 85 delay 200;
-#X obj 919 22 receive tempo;
 #N canvas -1928 79 1920 997 twang 0;
 #X obj 190 85 inlet;
 #X obj 307 74 inlet;
@@ -544,8 +570,10 @@
 #X connect 16 0 2 0;
 #X connect 17 0 3 0;
 #X restore 157 469 pd twang;
-#X connect 1 0 108 0;
-#X connect 2 0 108 1;
+#X obj 919 22 r tempo;
+#X obj 523 21 r start_stop;
+#X connect 1 0 107 0;
+#X connect 2 0 107 1;
 #X connect 9 0 13 0;
 #X connect 11 0 12 0;
 #X connect 13 0 16 0;
@@ -670,6 +698,7 @@
 #X connect 104 0 101 0;
 #X connect 105 0 102 0;
 #X connect 106 0 105 0;
-#X connect 107 0 29 0;
-#X connect 108 0 0 0;
-#X connect 108 0 0 1;
+#X connect 107 0 0 0;
+#X connect 107 0 0 1;
+#X connect 108 0 29 0;
+#X connect 109 0 97 0;

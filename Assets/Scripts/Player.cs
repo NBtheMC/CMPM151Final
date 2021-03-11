@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum NoteType { quarter, half, whole };
 public class Player : CharaDamage
 {
 
@@ -13,8 +14,7 @@ public class Player : CharaDamage
     Vector2 movement;
 
     //Note Stuff
-    public enum NoteType { quarter, half, whole };
-    public NoteType currentNote = NoteType.quarter;  //can switch between note types
+    private NoteType currentNote = NoteType.quarter;  //can switch between note types
     private float tempo; //the master tempo, a bit more than the cooldown
     private bool perfect; //if on tempo. need to get bangs from Pure data
     private float quarterCountdown;
@@ -32,8 +32,7 @@ public class Player : CharaDamage
 
     protected override void Update()
     {
-        //recieve pure data stuff and update accordingly
-        //uhhhhh I (Naman) do not know how to recieve from pd yet. I will do this tomorrow 3/9
+        //send tempo to pure data
 
         //Input
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -98,6 +97,24 @@ public class Player : CharaDamage
     protected void Shoot(NoteType shotNote)
     {
         //shoot either quarter, half, or whole note depending on stuff
+        switch (shotNote)
+        {
+            case NoteType.quarter:
+
+                break;
+            case NoteType.half:
+
+                break;
+
+            case NoteType.whole:
+
+                break;
+        }
         GameObject note = Instantiate(musicBullet,firePoint.position, Quaternion.Euler(0, 0, 0));
+    }
+
+    public NoteType getNote()
+    {
+        return currentNote;
     }
 }

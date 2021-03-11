@@ -5,17 +5,18 @@ using UnityEngine;
 public class Saxnote : MonoBehaviour
 {
     [SerializeField]
+    private GameObject player;
+    [SerializeField]
     private float speed = 0, damage = 0, knockback = 0;
     private Rigidbody2D rb2D;
-
-
-    void Awake()
-    {
-        rb2D = GetComponent<Rigidbody2D>();
-    }
+    private NoteType note;  //what to spawn in as
 
     void Start()
     {
+        note = GetComponent<Player>().getNote();
+        //set type, image, and variables here
+        rb2D = GetComponent<Rigidbody2D>();
+
         var dir = GameManager.Instance.FireToCursor();
         dir.Normalize();
         rb2D.AddForce(dir * speed, ForceMode2D.Impulse);
