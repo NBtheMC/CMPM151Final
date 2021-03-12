@@ -101,4 +101,9 @@ public class GameManager : MonoBehaviour
     {
         d.Hurt(damage, hitForce);
     }
+
+    public NoteType GetNote()
+    {
+        return player.getNote();
+    }
 }

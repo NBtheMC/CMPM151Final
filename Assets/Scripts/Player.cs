@@ -16,7 +16,7 @@ public class Player : CharaDamage
     //Note Stuff
     private NoteType currentNote = NoteType.quarter;  //can switch between note types
     private float tempo; //the master tempo, a bit more than the cooldown
-    private bool perfect; //if on tempo. need to get bangs from Pure data
+    private bool perfect = false; //if on tempo. need to get bangs from Pure data
     private float quarterCountdown;
     private float halfCountdown;
     private float wholeCountdown;
@@ -44,12 +44,12 @@ public class Player : CharaDamage
             currentNote = NoteType.quarter;
         }
         //switch to half note
-        if (Input.GetKeyDown("2"))
+        else if (Input.GetKeyDown("2"))
         {
             currentNote = NoteType.half;
         }
         //switch to whole note
-        if (Input.GetKeyDown("3"))
+        else if (Input.GetKeyDown("3"))
         {
             currentNote = NoteType.whole;
         }
@@ -85,6 +85,9 @@ public class Player : CharaDamage
                 wholeCountdown = tempo*4 - .1f; //reset countdown after shooting 
             }
         }
+        //update perfect signal based on pure data
+
+
         base.Update();
     }
 
@@ -100,19 +103,14 @@ public class Player : CharaDamage
         switch (shotNote)
         {
             case NoteType.quarter:
-
                 break;
             case NoteType.half:
-
                 break;
-
             case NoteType.whole:
-
                 break;
         }
         GameObject note = Instantiate(musicBullet,firePoint.position, Quaternion.Euler(0, 0, 0));
     }
-
     public NoteType getNote()
     {
         return currentNote;

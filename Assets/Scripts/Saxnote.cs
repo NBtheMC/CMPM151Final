@@ -7,15 +7,42 @@ public class Saxnote : MonoBehaviour
     [SerializeField]
     private GameObject player;
     [SerializeField]
-    private float speed = 0, damage = 0, knockback = 0;
+    private float speed = 5, damage = 0, knockback = 0.5f;
     private Rigidbody2D rb2D;
     private NoteType note;  //what to spawn in as
+    private Sprite currentSprite;
+    [SerializeField]
+    public Sprite quarterSprite, halfSprite, wholeSprite;
+    
 
     void Start()
     {
-        note = GetComponent<Player>().getNote();
+        note = GameManager.Instance.GetNote();
         //set type, image, and variables here
+        switch (note)
+        {
+            case NoteType.quarter:
+                Debug.Log("quarter");
+                this.GetComponent<SpriteRenderer>().sprite = quarterSprite;
+                damage = 1;
+                break;
+
+            case NoteType.half:
+                Debug.Log("half");
+                this.GetComponent<SpriteRenderer>().sprite = halfSprite;
+                damage = 2;
+                break;
+
+            case NoteType.whole:
+                Debug.Log("whole");
+                this.GetComponent<SpriteRenderer>().sprite = wholeSprite;
+                damage = 4;
+                break;
+        }
+
         rb2D = GetComponent<Rigidbody2D>();
+
+        //perfect or not
 
         var dir = GameManager.Instance.FireToCursor();
         dir.Normalize();
