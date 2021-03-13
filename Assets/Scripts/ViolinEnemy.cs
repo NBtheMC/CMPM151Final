@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ViolinEnemy : CharaDamage
 {
+    public Transform player;
+
     [SerializeField]
     private GameObject musicBullet = null;
     [SerializeField]
@@ -12,7 +14,7 @@ public class ViolinEnemy : CharaDamage
     private SpriteRenderer spriteRenderer;
     [SerializeField]
     private BoxCollider2D hurtBox = null;
-
+    private float dist = 0f;
     protected void Start()
     {
         OSCHandler.Instance.SendMessageToClient("pd", "/unity/violin_spawn", 1);
@@ -21,6 +23,7 @@ public class ViolinEnemy : CharaDamage
 
     protected override void Update()
     {
+        dist = Vector3.Distance(player.position, transform.position);
         if (dead)
         {
             if (spriteRenderer.color.a <= 0)
@@ -32,6 +35,15 @@ public class ViolinEnemy : CharaDamage
         {
             base.Update();
             Shoot();
+        }
+    }
+
+    public void FixedUpdate() {
+        if(dist > 5) {
+            Vector3 localPosition = player.transform.position - transform.position;
+            localPosition = localPosition.normalized; // The normalized direction in LOCAL space
+            transform.Translate(localPosition.x * Time.deltaTime * speed/4, localPosition.y * Time.deltaTime * speed/4,
+                                 localPosition.z * Time.deltaTime * speed/4);
         }
     }
 
