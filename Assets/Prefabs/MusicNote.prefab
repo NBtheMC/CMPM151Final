@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7626471860761970502}
   - component: {fileID: 1917015534291055977}
   m_Layer: 0
-  m_Name: Music Note 1
+  m_Name: Music Note
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359387781784388478}
-  m_LocalRotation: {x: -0, y: -0, z: -0.061139982, w: 0.9981292}
+  m_LocalRotation: {x: 0, y: 0, z: -0.061135706, w: 0.9981295}
   m_LocalPosition: {x: -15.221877, y: -4.2425156, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e0c49059968120f4cb5fb448f0eb24a1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7f359672dde77844cafbe7874a56765a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -168,7 +168,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.010245457, y: 0}
+  m_Offset: {x: -0.0076936185, y: 0.004284978}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -179,5 +179,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.23897108, y: 0.59079427}
+  m_Size: {x: 0.28618085, y: 0.6553935}
   m_EdgeRadius: 0

@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Saxnote : MonoBehaviour
+public class ViolinNote : MonoBehaviour
 {
+    //Same thing as Saxnote except fires to player. If I was less lazy I would instead make a base class.
     [SerializeField]
-    private float speed = 5, damage = 0, knockback = 0.5f;
+    private float speed = 5, damage = 0, knockback = 0.5f; 
     private Rigidbody2D rb2D;
     private NoteType note;  //what to spawn in as
     private Sprite currentSprite;
     [SerializeField]
     public Sprite quarterSprite, halfSprite, wholeSprite;
-    
+
 
     void Start()
     {
@@ -42,7 +43,7 @@ public class Saxnote : MonoBehaviour
 
         //perfect or not
 
-        var dir = GameManager.Instance.FireToCursor();
+        var dir = GameManager.Instance.GetPlayerLocation()- (Vector2)this.transform.position;
         dir.Normalize();
         rb2D.AddForce(dir * speed, ForceMode2D.Impulse);
     }

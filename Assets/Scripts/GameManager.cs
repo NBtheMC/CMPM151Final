@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     private int count;
 
     Player player;
-    Transform playerTransform;
     GameObject playerObject;
     GameObject firepoint;
     GameObject mouse;
@@ -44,7 +43,6 @@ public class GameManager : MonoBehaviour
 
         playerObject = GameObject.Find("Player");
         player = GameObject.Find("Player").GetComponent<Player>();
-        playerTransform = player.transform;
         firepoint = GameObject.Find("FirePoint");
         mouse = GameObject.Find("Mouse");
         uiSelect = GameObject.Find("UI Select");
