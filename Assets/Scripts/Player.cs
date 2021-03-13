@@ -42,16 +42,19 @@ public class Player : CharaDamage
         if (Input.GetKeyDown("1"))
         {
             currentNote = NoteType.quarter;
+            GameManager.Instance.ChangeSelect(1);
         }
         //switch to half note
         else if (Input.GetKeyDown("2"))
         {
             currentNote = NoteType.half;
+            GameManager.Instance.ChangeSelect(2);
         }
         //switch to whole note
         else if (Input.GetKeyDown("3"))
         {
             currentNote = NoteType.whole;
+            GameManager.Instance.ChangeSelect(3);
         }
         //countdowns
         if (quarterCountdown > 0)

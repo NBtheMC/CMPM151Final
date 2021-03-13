@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class ViolinEnemy : CharaDamage
 {
-    private void Start()
+    protected void Start()
     {
-        //send message to pure data that violin has spawned
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/violin_spawn", 1);
+    }
+
+    protected override void Die()
+    {
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/violin_die", 1);
+    }
+
+    protected void Shoot()
+    {
+
     }
 }

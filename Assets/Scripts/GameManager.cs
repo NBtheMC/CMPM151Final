@@ -28,6 +28,15 @@ public class GameManager : MonoBehaviour
     GameObject playerObject;
     GameObject firepoint;
     GameObject mouse;
+    GameObject uiSelect;
+
+    //UI select stuff
+    [SerializeField]
+    private GameObject Select1 = null;
+    [SerializeField]
+    private GameObject Select2 = null;
+    [SerializeField]
+    private GameObject Select3 = null;
 
     void Awake()
     {
@@ -38,6 +47,7 @@ public class GameManager : MonoBehaviour
         playerTransform = player.transform;
         firepoint = GameObject.Find("FirePoint");
         mouse = GameObject.Find("Mouse");
+        uiSelect = GameObject.Find("UI Select");
     }
 
     void Start()
@@ -105,5 +115,24 @@ public class GameManager : MonoBehaviour
     public NoteType GetNote()
     {
         return player.getNote();
+    }
+
+    public void ChangeSelect(float note)//1= quarter, 2= half, 3=whole
+    {
+        switch (note)
+        {
+            case 1:
+                uiSelect.transform.position = Select1.transform.position;
+                break;
+            case 2:
+                uiSelect.transform.position = Select2.transform.position;
+                break;
+            case 3:
+                uiSelect.transform.position = Select3.transform.position;
+                break;
+            default:
+                Debug.Log("Note not in UI");
+                break;
+        }
     }
 }
