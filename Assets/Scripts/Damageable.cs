@@ -6,7 +6,7 @@ public class Damageable : MonoBehaviour
 {
     [SerializeField]
     protected float health, speed;
-    protected bool damageable = true;
+    protected bool damageable = true, dead = false;
 
     protected Rigidbody2D rb;
 
@@ -30,6 +30,7 @@ public class Damageable : MonoBehaviour
 
     protected virtual void Die()
     {
+        damageable = false;
         Debug.Log(this.gameObject.name + " is dead");
     }
 }

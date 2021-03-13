@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 573617128}
   - component: {fileID: 573617129}
   m_Layer: 13
-  m_Name: TerrainCollider (1)
+  m_Name: TerrainCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1562,7 +1562,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932425405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.05, y: -0.75, z: 0}
+  m_LocalPosition: {x: 5.12, y: -0.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 978101338}
@@ -1588,6 +1588,9 @@ MonoBehaviour:
   hitstunLength: 0.1
   musicBullet: {fileID: 800111551182038244, guid: 47ecb72f6cd047046815d4f435b203f7,
     type: 3}
+  deathTransparency: 50
+  fadeSpeed: 5
+  hurtBox: {fileID: 978101339}
 --- !u!50 &1932425409
 Rigidbody2D:
   serializedVersion: 4
@@ -1923,7 +1926,7 @@ GameObject:
   - component: {fileID: 2106182207}
   - component: {fileID: 2106182208}
   m_Layer: 15
-  m_Name: Pushobx (1)
+  m_Name: Pushobx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2035,6 +2038,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyNote
+      objectReference: {fileID: 0}
+    - target: {fileID: 800111551182038244, guid: 47ecb72f6cd047046815d4f435b203f7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47ecb72f6cd047046815d4f435b203f7, type: 3}
