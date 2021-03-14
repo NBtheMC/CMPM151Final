@@ -10,11 +10,12 @@ public class ViolinEnemy : CharaDamage
     private GameObject musicBullet = null;
     [SerializeField]
     private float deathTransparency = 50, fadeSpeed = 5;
-    private Color transparency;
-    private SpriteRenderer spriteRenderer;
     [SerializeField]
     private BoxCollider2D hurtBox = null;
-    private float dist = 0f;
+
+    private Color transparency; // for death
+    private SpriteRenderer spriteRenderer; // also prolly for death
+    private float dist = 0f;    // measurement used for keeping @ range.
     private int type; // either 1, 2, 3, or 4. shoots on different beats
 
     protected void Start()
@@ -41,7 +42,7 @@ public class ViolinEnemy : CharaDamage
     }
 
     public void FixedUpdate() {
-        if(dist > 5) {
+        if(dist > 5 && dist < 15) {
             Vector3 localPosition = player.transform.position - transform.position;
             localPosition = localPosition.normalized; // The normalized direction in LOCAL space
             transform.Translate(localPosition.x * Time.deltaTime * speed/4, localPosition.y * Time.deltaTime * speed/4,
@@ -61,6 +62,7 @@ public class ViolinEnemy : CharaDamage
 
     protected void Shoot()
     {
+        
         GameObject note = Instantiate(musicBullet, transform.position, Quaternion.Euler(0, 0, 0));
         note.transform.parent = this.transform;
     }
