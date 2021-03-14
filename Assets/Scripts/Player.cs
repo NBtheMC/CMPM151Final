@@ -15,16 +15,15 @@ public class Player : CharaDamage
 
     //Note Stuff
     private NoteType currentNote = NoteType.quarter;  //can switch between note types
-    private float tempo; //the master tempo, a bit more than the cooldown
-    private bool perfect = false; //if on tempo. need to get bangs from Pure data
     private float quarterCountdown;
     private float halfCountdown;
     private float wholeCountdown;
+    private float tempo;
 
     protected void Start()
     {
         //everything else based off of the countdown
-        tempo = 1.5f;
+        tempo = GameManager.Instance.getTempo();
         quarterCountdown = tempo - .1f;
         halfCountdown = quarterCountdown * 2;
         wholeCountdown = quarterCountdown * 4;
@@ -32,8 +31,6 @@ public class Player : CharaDamage
 
     protected override void Update()
     {
-        //send tempo to pure data
-
         //Input
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");

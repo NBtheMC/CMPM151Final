@@ -15,6 +15,8 @@ public class ViolinEnemy : CharaDamage
     [SerializeField]
     private BoxCollider2D hurtBox = null;
     private float dist = 0f;
+    private int type; // either 1, 2, 3, or 4. shoots on different beats
+
     protected void Start()
     {
         OSCHandler.Instance.SendMessageToClient("pd", "/unity/violin_spawn", 1);
@@ -60,5 +62,6 @@ public class ViolinEnemy : CharaDamage
     protected void Shoot()
     {
         GameObject note = Instantiate(musicBullet, transform.position, Quaternion.Euler(0, 0, 0));
+        note.transform.parent = this.transform;
     }
 }

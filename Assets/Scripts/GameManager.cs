@@ -18,10 +18,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //OSC stuff
+    //OSC stuff I dont THINK we need this but its connected to some server stuff so dont risk it
     [SerializeField]
     private Text countText = null;
     private int count;
+
+    //tempo stuff
+    [SerializeField]
+    private float tempo; //each beat, in milliseconds
+    private float aheadCountdown; //when gets to 0 turns on perfect
+    private float behindCountdown; //when gets to 0 turns off perfect
+    private bool perfect = false;
+
 
     Player player;
     GameObject playerObject;
@@ -54,13 +62,34 @@ public class GameManager : MonoBehaviour
 
         //OSC stuff
         OSCHandler.Instance.Init();
-        OSCHandler.Instance.SendMessageToClient("pd", "/unity/trigger", "ready");
-        OSCHandler.Instance.SendMessageToClient("pd", "/unity/playseq", 1);
+        //time stuff up right
+        aheadCountdown = .95f * tempo;
+        behindCountdown = 1.05f * tempo;
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/start_stop", 1);
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", tempo);
+    }
 
-        count = 0;
-        setCountText();
-
-        OSCHandler.Instance.SendMessageToClient("pd", "/unity/on", 1);
+    //countdowns
+    private void Update()
+    {
+        if (aheadCountdown > 0)
+        {
+            aheadCountdown -= Time.deltaTime;
+        }
+        else
+        {
+            perfect = true;
+            aheadCountdown = tempo;
+        }
+        if (behindCountdown > 0)
+        {
+            behindCountdown -= Time.deltaTime;
+        }
+        else
+        {
+            perfect = false;
+            behindCountdown = tempo;
+        }
     }
 
     void FixedUpdate()
@@ -84,15 +113,6 @@ public class GameManager : MonoBehaviour
 
             }
         }
-    }
-
-    void setCountText()
-    {
-        countText.text = "Count: " + count.ToString();
-
-        //************* Send the message to the client...
-        OSCHandler.Instance.SendMessageToClient("pd", "/unity/trigger", count);
-        //*************
     }
 
     public Vector2 GetPlayerLocation()
@@ -132,5 +152,19 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Note not in UI");
                 break;
         }
+    }
+
+    public float getTempo()
+    {
+        return tempo;
+    }
+    public void setTempo(float newTempo)
+    {
+        tempo = newTempo;
+        return;
+    }
+    public bool isPerfect()
+    {
+        return perfect;
     }
 }
