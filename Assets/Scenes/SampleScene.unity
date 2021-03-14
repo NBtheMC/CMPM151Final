@@ -1230,6 +1230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countText: {fileID: 950505340}
+  tempo: 0
   Select1: {fileID: 195947932}
   Select2: {fileID: 796962576}
   Select3: {fileID: 1357814105}
@@ -1694,6 +1695,7 @@ MonoBehaviour:
   health: 3
   speed: 10
   hitstunLength: 0.1
+  player: {fileID: 1955074769}
   musicBullet: {fileID: 800111551182038244, guid: 47ecb72f6cd047046815d4f435b203f7,
     type: 3}
   deathTransparency: 50

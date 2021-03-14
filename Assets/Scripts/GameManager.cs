@@ -26,16 +26,14 @@ public class GameManager : MonoBehaviour
     //tempo stuff
     [SerializeField]
     private float tempo; //each beat, in milliseconds
-    private float aheadCountdown; //when gets to 0 turns on perfect
-    private float behindCountdown; //when gets to 0 turns off perfect
-    private bool perfect = false;
-
+    //private bool onBeat = true; 
 
     Player player;
     GameObject playerObject;
     GameObject firepoint;
     GameObject mouse;
     GameObject uiSelect;
+
 
     //UI select stuff
     [SerializeField]
@@ -59,12 +57,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UnityEngine.Cursor.visible = false;
-
         //OSC stuff
         OSCHandler.Instance.Init();
         //time stuff up right
-        aheadCountdown = .95f * tempo;
-        behindCountdown = 1.05f * tempo;
         OSCHandler.Instance.SendMessageToClient("pd", "/unity/start_stop", 1);
         OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", tempo);
     }
@@ -72,24 +67,7 @@ public class GameManager : MonoBehaviour
     //countdowns
     private void Update()
     {
-        if (aheadCountdown > 0)
-        {
-            aheadCountdown -= Time.deltaTime;
-        }
-        else
-        {
-            perfect = true;
-            aheadCountdown = tempo;
-        }
-        if (behindCountdown > 0)
-        {
-            behindCountdown -= Time.deltaTime;
-        }
-        else
-        {
-            perfect = false;
-            behindCountdown = tempo;
-        }
+        
     }
 
     void FixedUpdate()
@@ -162,9 +140,5 @@ public class GameManager : MonoBehaviour
     {
         tempo = newTempo;
         return;
-    }
-    public bool isPerfect()
-    {
-        return perfect;
     }
 }
