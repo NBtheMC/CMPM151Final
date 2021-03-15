@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
         return (Vector2)playerObject.transform.position;
     }
 
-    public Vector3 getMousePosition()
+    public Vector3 GetMousePosition()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
