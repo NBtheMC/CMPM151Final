@@ -1821,6 +1821,7 @@ MonoBehaviour:
   speed: 10
   hitstunLength: 0.1
   player: {fileID: 1955074769}
+  shootingTiming: {fileID: 542695240}
   musicBullet: {fileID: 800111551182038244, guid: 47ecb72f6cd047046815d4f435b203f7,
     type: 3}
   deathTransparency: 50
