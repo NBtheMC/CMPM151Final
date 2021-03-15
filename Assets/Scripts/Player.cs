@@ -87,6 +87,12 @@ public class Player : CharaDamage
         }
         //update perfect signal based on pure data
 
+        //flip player based on mouse position
+        Vector2 mousePos = GameManager.Instance.FireToCursor() + firePoint.transform.position;
+        //if (mousePos.X )
+        //{
+
+        //}
 
         base.Update();
     }
