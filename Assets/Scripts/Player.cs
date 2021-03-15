@@ -93,8 +93,6 @@ public class Player : CharaDamage
                 wholeCountdown = tempo*4 - .1f; //reset countdown after shooting 
             }
         }
-        //update perfect signal based on pure data
-
         //flip player based on mouse position
         Vector2 mousePos = GameManager.Instance.GetMousePosition();
         if (mousePos.x < transform.position.x)
@@ -146,10 +144,13 @@ public class Player : CharaDamage
         switch (shotNote)
         {
             case NoteType.quarter:
+                OSCHandler.Instance.SendMessageToClient("pd", "/unity/shoot/quarter_sax", 1);
                 break;
             case NoteType.half:
+                OSCHandler.Instance.SendMessageToClient("pd", "/unity/shoot/half_sax", 1);
                 break;
             case NoteType.whole:
+                OSCHandler.Instance.SendMessageToClient("pd", "/unity/shoot/whole_sax", 1);
                 break;
         }
         GameObject note = Instantiate(musicBullet,firePoint.position, Quaternion.Euler(0, 0, 0));

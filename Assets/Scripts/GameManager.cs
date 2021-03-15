@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     //tempo stuff
     [SerializeField]
-    private float tempo; //each beat, in milliseconds
+    private float tempo = 0.3f; //each beat, in seconds
     //private bool onBeat = true; 
 
     Player player;
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         UnityEngine.Cursor.visible = false;
         //OSC stuff
         OSCHandler.Instance.Init();
-        OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", tempo);
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", tempo*1000);
     }
 
 
