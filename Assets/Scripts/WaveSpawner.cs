@@ -7,7 +7,7 @@ public class WaveSpawner : MonoBehaviour
     private float spawnRate = 1.0f;
     private float timeBetweenWaves = 10f;
 
-    public int enemyCount = 4; // how many in each wave
+    public int enemyCount = 3; // how many in each wave
     public int wave;
 
     //used for spawning in enemies
@@ -30,7 +30,7 @@ public class WaveSpawner : MonoBehaviour
         waveIsDone = false;
 
         //3 waves of regular enemies
-        for(int i = 0; i < 3; i++)
+        for(int i = 0; i < 4; i++)
         {
             for (int j = 0; j < enemyCount; j++)
             {

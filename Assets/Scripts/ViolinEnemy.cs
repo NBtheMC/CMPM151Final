@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class ViolinEnemy : CharaDamage
 {
-    public Transform player;
+    private Transform player;
 
     [SerializeField]
-    ShootingTiming shootingTiming;
+    private GameObject shootingTiming;
 
     [SerializeField]
     private GameObject musicBullet = null;
@@ -24,10 +24,12 @@ public class ViolinEnemy : CharaDamage
 
     protected void Start()
     {
+        player = GameManager.Instance.GetPlayerTransform();
+        shootingTiming = GameManager.Instance.GetShootingTiming();
         //set type
         type = 2;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        shootingTiming.OnBeat += ShootingTiming_OnBeat;
+        shootingTiming.GetComponent<ShootingTiming>().OnBeat += ShootingTiming_OnBeat;
     }
 
     public void setType(int newType)
@@ -40,7 +42,7 @@ public class ViolinEnemy : CharaDamage
         if (!dead)
         {
             //shoot based on beat
-            switch (shootingTiming.getBeat())
+            switch (shootingTiming.GetComponent<ShootingTiming>().getBeat())
             {
                 case 1:
                     if (type == 1 || type == 2)
