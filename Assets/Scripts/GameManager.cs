@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     GameObject firepoint;
     GameObject mouse;
     GameObject uiSelect;
-
+    GameObject ShootingTiming;
 
     //UI select stuff
     [SerializeField]
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         firepoint = GameObject.Find("FirePoint");
         mouse = GameObject.Find("Mouse");
         uiSelect = GameObject.Find("UI Select");
-
+        ShootingTiming = GameObject.Find("ShootingTiming");
         //OSC stuff
         OSCHandler.Instance.Init();
         OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", tempo * 1000);
@@ -87,6 +87,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public Transform GetPlayerTransform()
+    {
+        return player.transform;
+    }
+
     public Vector2 GetPlayerLocation()
     {
         return (Vector2)playerObject.transform.position;
@@ -104,6 +109,10 @@ public class GameManager : MonoBehaviour
         return (Vector2)(mouse.transform.position - firepoint.transform.position);
     }
 
+    public GameObject GetShootingTiming()
+    {
+        return ShootingTiming;
+    }
     public void DamageGeneral(Damageable d, float damage, Vector2 hitForce)//attack tells GM to damage target.
     {
         d.Hurt(damage, hitForce);
