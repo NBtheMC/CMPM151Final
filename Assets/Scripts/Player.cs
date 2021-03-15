@@ -5,7 +5,6 @@ using UnityEngine;
 public enum NoteType { quarter, half, whole };
 public class Player : CharaDamage
 {
-
     [SerializeField]
     private GameObject musicBullet = null;
     [SerializeField]
@@ -14,6 +13,7 @@ public class Player : CharaDamage
     private GameObject sax = null;
     private Vector2 hotSpot = Vector2.zero;
     Vector2 movement;
+
 
     //angle debug stuff
     [SerializeField]
@@ -42,6 +42,17 @@ public class Player : CharaDamage
         //Input
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        //animation
+        if(movement.x != 0 || movement.y != 0)
+        {
+            animator.SetBool("isRun", true);
+        }
+        else
+        {
+            animator.SetBool("isRun", false);
+        }
+
         movement.Normalize();
         //switch to quarter note
         if (Input.GetKeyDown("1"))
