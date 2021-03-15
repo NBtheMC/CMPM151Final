@@ -59,16 +59,9 @@ public class GameManager : MonoBehaviour
         UnityEngine.Cursor.visible = false;
         //OSC stuff
         OSCHandler.Instance.Init();
-        //time stuff up right
-        OSCHandler.Instance.SendMessageToClient("pd", "/unity/start_stop", 1);
         OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", tempo);
     }
 
-    //countdowns
-    private void Update()
-    {
-        
-    }
 
     void FixedUpdate()
     {
@@ -96,6 +89,13 @@ public class GameManager : MonoBehaviour
     public Vector2 GetPlayerLocation()
     {
         return (Vector2)playerObject.transform.position;
+    }
+
+    public Vector3 getMousePosition()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
+        return mousePos;
     }
 
     public Vector2 FireToCursor()

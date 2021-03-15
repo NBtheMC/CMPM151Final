@@ -37,7 +37,7 @@ public class ViolinEnemy : CharaDamage
         else
         {
             base.Update();
-            Shoot();
+            //Shoot();
         }
     }
 

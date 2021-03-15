@@ -15,6 +15,8 @@ public class ShootingTiming : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //time stuff up right
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/start_stop", 1);
         tempo = GameManager.Instance.getTempo();
         aheadCountdown = .95f * tempo;
         behindCountdown = 1.05f * tempo;
