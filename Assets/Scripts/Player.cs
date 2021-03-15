@@ -155,6 +155,7 @@ public class Player : CharaDamage
         }
         GameObject note = Instantiate(musicBullet,firePoint.position, Quaternion.Euler(0, 0, 0));
     }
+
     public NoteType getNote()
     {
         return currentNote;

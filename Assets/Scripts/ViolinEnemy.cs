@@ -24,6 +24,8 @@ public class ViolinEnemy : CharaDamage
 
     protected void Start()
     {
+        //set type
+        type = 2;
         spriteRenderer = GetComponent<SpriteRenderer>();
         shootingTiming.OnBeat += ShootingTiming_OnBeat;
     }
@@ -35,33 +37,36 @@ public class ViolinEnemy : CharaDamage
 
     private void ShootingTiming_OnBeat(object sender, EventArgs e)
     {
-        //shoot based on beat
-        switch (shootingTiming.getBeat())
+        if (!dead)
         {
-            case 1:
-                if (type == 1 || type == 2)
-                {
-                    Shoot();
-                }
-                break;
-            case 2:
-                if (type == 3)
-                {
-                    Shoot();
-                }
-                break;
-            case 3:
-                if (type == 1 || type ==4)
-                {
-                    Shoot();
-                }
-                break;
-            case 4:
-                if (type == 3)
-                {
-                    Shoot();
-                }
-                break;
+            //shoot based on beat
+            switch (shootingTiming.getBeat())
+            {
+                case 1:
+                    if (type == 1 || type == 2)
+                    {
+                        Shoot();
+                    }
+                    break;
+                case 2:
+                    if (type == 3)
+                    {
+                        Shoot();
+                    }
+                    break;
+                case 3:
+                    if (type == 1 || type == 4)
+                    {
+                        Shoot();
+                    }
+                    break;
+                case 4:
+                    if (type == 3)
+                    {
+                        Shoot();
+                    }
+                    break;
+            }
         }
     }
 
