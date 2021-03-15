@@ -52,14 +52,15 @@ public class GameManager : MonoBehaviour
         firepoint = GameObject.Find("FirePoint");
         mouse = GameObject.Find("Mouse");
         uiSelect = GameObject.Find("UI Select");
+
+        //OSC stuff
+        OSCHandler.Instance.Init();
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", tempo * 1000);
     }
 
     void Start()
     {
         UnityEngine.Cursor.visible = false;
-        //OSC stuff
-        OSCHandler.Instance.Init();
-        OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", tempo*1000);
     }
 
 

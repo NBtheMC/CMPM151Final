@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class ShootingTiming : MonoBehaviour
 {
     private float tempo;
     private int beat = 4; //either 1,2,3, or 4. used to shoot appropriate event
-    public UnityEngine.Events.UnityEvent EnemiesToShoot; //triggers shooting on whatever enemies
+    public event EventHandler OnBeat; //when beat happens
     private float aheadCountdown; //when gets to 0 turns on perfect
     private float behindCountdown; //when gets to 0 turns off perfect
     private bool perfect = false; //rewards player for shooting on beat
@@ -21,6 +22,7 @@ public class ShootingTiming : MonoBehaviour
         tempo = GameManager.Instance.getTempo();
         aheadCountdown = .95f * tempo;
         behindCountdown = 1.05f * tempo;
+        OnBeat += Testing_OnBeat;
     }
 
     // Update is called once per frame
@@ -53,10 +55,15 @@ public class ShootingTiming : MonoBehaviour
             //update tempo on beat
             tempo = GameManager.Instance.getTempo();
             //set beat
-            beat = ((beat + 1)%4)+1;
+            beat = (beat%4)+1;
             //shoot based on beat
-
+            OnBeat?.Invoke(this,EventArgs.Empty); //calls onbeat event if its not null
         }
+    }
+
+    public void Testing_OnBeat(object sender, EventArgs e)
+    {
+        Debug.Log("Beat: " + getBeat());
     }
    
     public int getBeat()
