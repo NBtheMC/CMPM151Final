@@ -53,9 +53,15 @@ public class ShootingTiming : MonoBehaviour
             tempo = GameManager.Instance.getTempo();
             //set beat
             beat = ((beat + 1)%4)+1;
+            //shoot based on beat
+
         }
     }
    
+    public int getBeat()
+    {
+        return beat;
+    }
     //if a click is close to on beat. called by player
     public bool isPerfect()
     {
