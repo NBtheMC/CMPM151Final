@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //handles shooting timing of enemies and the player
+//iCarly pog??
 public class ShootingTiming : MonoBehaviour
 {
     private float tempo;
