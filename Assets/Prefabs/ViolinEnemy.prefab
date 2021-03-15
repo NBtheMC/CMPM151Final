@@ -44,7 +44,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 64.90007, y: 19.079262}
+  m_Offset: {x: 63.66799, y: 16.827522}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.891533, y: 18.216354}
+  m_Size: {x: 6.9568367, y: 13.712879}
   m_EdgeRadius: 0
 --- !u!1 &8511240765586847629
 GameObject:
@@ -101,7 +101,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 63.693, y: 8.2650175}
+  m_Offset: {x: 62.80081, y: 13.958098}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -112,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10.7314, y: 7.0124893}
+  m_Size: {x: 5.5481415, y: 6.1627865}
   m_EdgeRadius: 0
 --- !u!1 &8511240766165208660
 GameObject:
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 8511240766165208661}
   - component: {fileID: 8511240766165208618}
   m_Layer: 15
-  m_Name: Pushobx
+  m_Name: Pushbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,7 +158,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 65.1366, y: 16.168118}
+  m_Offset: {x: 63.479645, y: 15.530829}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -169,7 +169,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.6878815, y: 10.860363}
+  m_Size: {x: 6.772888, y: 8.736074}
   m_EdgeRadius: 0
 --- !u!1 &8511240766410882263
 GameObject:
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 8511240766410882219}
   - component: {fileID: 8511240766410882216}
   m_Layer: 0
-  m_Name: ViolinEnemy 1
+  m_Name: ViolinEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

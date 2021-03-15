@@ -258,8 +258,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 224021747}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.94, y: -7.33, z: 0}
-  m_LocalScale: {x: 1.0162969, y: 11.93717, z: 1}
+  m_LocalPosition: {x: -23.05, y: -7.33, z: 0}
+  m_LocalScale: {x: 0.78763, y: 11.93717, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -795,7 +795,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.010344982, y: -0.44414446}
+  m_Offset: {x: -0.027488708, y: -0.17173803}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -806,7 +806,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.82514286, y: 0.75290686}
+  m_Size: {x: 0.70407104, y: 1.2977197}
   m_EdgeRadius: 0
 --- !u!1 &934909983
 GameObject:
@@ -911,7 +911,7 @@ Transform:
   m_GameObject: {fileID: 934909983}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.31, y: -2.1499996, z: 0}
-  m_LocalScale: {x: 25.06376, y: 0.5, z: 1.8221}
+  m_LocalScale: {x: 25.06376, y: 0.43125, z: 1.8221}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -1170,7 +1170,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246654617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.31, y: -12.629999, z: 0}
+  m_LocalPosition: {x: -13.31, y: -12.66, z: 0}
   m_LocalScale: {x: 25.06376, y: 0.5, z: 1.8221}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1435,7 +1435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458523160}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1299992, y: -7.33, z: 0}
+  m_LocalPosition: {x: -2.91, y: -7.33, z: 0}
   m_LocalScale: {x: 1.0162969, y: 11.93717, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1638,7 +1638,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.044448376, y: -0.01786971}
+  m_Offset: {x: -0.035003185, y: -0.01786971}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1649,7 +1649,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7459574, y: 1.6871924}
+  m_Size: {x: 0.58705425, y: 1.3277884}
   m_EdgeRadius: 0
 --- !u!1 &1955074765
 GameObject:
@@ -1663,6 +1663,7 @@ GameObject:
   - component: {fileID: 1955074768}
   - component: {fileID: 1955074766}
   - component: {fileID: 1955074767}
+  - component: {fileID: 1955074770}
   m_Layer: 12
   m_Name: Player
   m_TagString: Untagged
@@ -1704,7 +1705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  speed: 10
+  speed: 7.5
   hitstunLength: 0.1
   musicBullet: {fileID: 359387781784388478, guid: 428d4b9413c56dd4cb72cb33b88d2f46,
     type: 3}
@@ -1781,6 +1782,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1955074770
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955074765}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 773583a9c0065034e9b2a6ad5753599b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1995741657
 GameObject:
   m_ObjectHideFlags: 0
@@ -1919,7 +1939,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.020233631, y: -0.09330484}
+  m_Offset: {x: -0.025166988, y: -0.09330487}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1930,7 +1950,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.576396, y: 1.226479}
+  m_Size: {x: 0.48559475, y: 1.226479}
   m_EdgeRadius: 0
 --- !u!1001 &800111549267809630
 PrefabInstance:
