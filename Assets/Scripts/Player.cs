@@ -10,8 +10,16 @@ public class Player : CharaDamage
     private GameObject musicBullet = null;
     [SerializeField]
     private Transform firePoint = null;
+    [SerializeField]
+    private GameObject sax = null;
     private Vector2 hotSpot = Vector2.zero;
     Vector2 movement;
+
+    //angle debug stuff
+    [SerializeField]
+    private float angle = 0;
+    [SerializeField]
+    private Vector2 thisPos, debugMouse;
 
     //Note Stuff
     private NoteType currentNote = NoteType.quarter;  //can switch between note types
@@ -88,11 +96,40 @@ public class Player : CharaDamage
         //update perfect signal based on pure data
 
         //flip player based on mouse position
-        Vector2 mousePos = GameManager.Instance.FireToCursor() + firePoint.transform.position;
-        //if (mousePos.X )
-        //{
+        Vector2 mousePos = GameManager.Instance.GetMousePosition();
+        if (mousePos.x < transform.position.x)
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        else
+            transform.localScale = new Vector3(1f, 1f, 1f);
 
-        //}
+        //changes sax rotation based on mouse position
+        float cursorAngle = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * 180 / Mathf.PI;
+        thisPos = transform.position; //debug stuff
+        debugMouse = mousePos;
+        angle = cursorAngle;
+
+        float adjustedAngle;
+        //-90 and 90
+        if(-90 < cursorAngle && cursorAngle < 90)
+        {
+            adjustedAngle = (cursorAngle + 90) / 180;
+            sax.transform.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(-20, 20, adjustedAngle));
+        }
+        else
+        {
+            //90->180, -180 -> -90
+            //needs to be 1->0.5, 0.5->0
+            if (cursorAngle > 0)
+            {
+                adjustedAngle = (cursorAngle - 90) / 180;//0->0.5
+                adjustedAngle = (-adjustedAngle) + 1;//1->0.5
+            }
+            else
+            {
+                adjustedAngle = (-cursorAngle - 90) / 180;//0.5->0
+            }
+            sax.transform.rotation = Quaternion.Euler(0, 0, -Mathf.Lerp(-20, 20, adjustedAngle));
+        }
 
         base.Update();
     }
