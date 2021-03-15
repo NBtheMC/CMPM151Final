@@ -1,10 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ViolinEnemy : CharaDamage
 {
     public Transform player;
+
+    [SerializeField]
+    ShootingTiming shootingTiming;
 
     [SerializeField]
     private GameObject musicBullet = null;
@@ -20,8 +24,45 @@ public class ViolinEnemy : CharaDamage
 
     protected void Start()
     {
-        OSCHandler.Instance.SendMessageToClient("pd", "/unity/violin_spawn", 1);
         spriteRenderer = GetComponent<SpriteRenderer>();
+        shootingTiming.OnBeat += ShootingTiming_OnBeat;
+    }
+
+    public void setType(int newType)
+    {
+        type = newType;
+    }
+
+    private void ShootingTiming_OnBeat(object sender, EventArgs e)
+    {
+        //shoot based on beat
+        switch (shootingTiming.getBeat())
+        {
+            case 1:
+                if (type == 1 || type == 2)
+                {
+                    Shoot();
+                }
+                break;
+            case 2:
+                if (type == 3)
+                {
+                    Shoot();
+                }
+                break;
+            case 3:
+                if (type == 1 || type ==4)
+                {
+                    Shoot();
+                }
+                break;
+            case 4:
+                if (type == 3)
+                {
+                    Shoot();
+                }
+                break;
+        }
     }
 
     protected override void Update()
@@ -51,8 +92,7 @@ public class ViolinEnemy : CharaDamage
     }
 
     protected override void Die()
-    {
-        OSCHandler.Instance.SendMessageToClient("pd", "/unity/violin_die", 1);
+    {      
         damageable = false;
         dead = true;
         hurtBox.enabled = false;
@@ -62,7 +102,22 @@ public class ViolinEnemy : CharaDamage
 
     protected void Shoot()
     {
-        
+        //check type again to send appropriate bang to pd
+        switch (type)
+        {
+            case 1:
+                OSCHandler.Instance.SendMessageToClient("pd", "/unity/shoot/violin1", 1);
+                break;
+            case 2:
+                OSCHandler.Instance.SendMessageToClient("pd", "/unity/shoot/violin2", 1);
+                break;
+            case 3:
+                OSCHandler.Instance.SendMessageToClient("pd", "/unity/shoot/violin3", 1);
+                break;
+            case 4:
+                OSCHandler.Instance.SendMessageToClient("pd", "/unity/shoot/violin4", 1);
+                break;
+        }
         GameObject note = Instantiate(musicBullet, transform.position, Quaternion.Euler(0, 0, 0));
         note.transform.parent = this.transform;
     }
