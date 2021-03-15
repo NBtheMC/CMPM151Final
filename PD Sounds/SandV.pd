@@ -1,4 +1,4 @@
-#N canvas -8 0 1440 878 12;
+#N canvas 0 0 1440 878 12;
 #X obj 142 520 dac~;
 #X obj 158 433 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -2018,7 +2018,7 @@
 #X connect 12 0 3 0;
 #X connect 13 0 3 1;
 #X connect 16 0 17 0;
-#X restore 334 636 pd violin;
+#X restore 756 775 pd violin;
 #X connect 1 0 43 0;
 #X connect 2 0 43 1;
 #X connect 9 0 13 0;
