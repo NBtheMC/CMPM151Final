@@ -42,7 +42,7 @@ public class ViolinEnemy : CharaDamage
     }
 
     public void FixedUpdate() {
-        if(dist > 5 && dist < 15) {
+        if(dist > 5 && dist < 15 && !dead) {
             Vector3 localPosition = player.transform.position - transform.position;
             localPosition = localPosition.normalized; // The normalized direction in LOCAL space
             transform.Translate(localPosition.x * Time.deltaTime * speed/4, localPosition.y * Time.deltaTime * speed/4,
