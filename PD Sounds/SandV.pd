@@ -541,7 +541,7 @@
 #X obj 807 19 loadbang;
 #X msg 838 64 300;
 #X obj 514 413 *~;
-#N canvas 0 22 943 756 cello 0;
+#N canvas 0 22 943 756 cello 1;
 #N canvas 680 338 614 395 sub.karplus 0;
 #X obj 12 12 block~ 1 1 1;
 #X obj 12 307 inlet~;
@@ -1224,9 +1224,9 @@
 #X connect 21 0 18 0;
 #X restore 243 331 pd reverb;
 #X obj 317 335 hsl 128 15 0 1 0 0 reverbWetDry reverbWetDry Reverb:_Dry_---_Wet
--2 -8 0 10 -262144 -1 -1 0 1;
+-2 -8 0 10 -262144 -1 -1 1800 1;
 #X obj 351 368 hsl 128 15 0 1 0 0 mgain mgain Master_Gain -2 -8 0 10
--262144 -1 -1 200 1;
+-262144 -1 -1 1800 1;
 #N canvas 183 60 329 243 masterGain 0;
 #X obj 84 126 *~;
 #X floatatom 104 102 5 0 0 0 - - -;
@@ -1261,7 +1261,7 @@
 #X obj 74 197 tabread4~ SoundData;
 #X obj 213 133 expr 44100/$f1;
 #X obj 253 179 hsl 128 15 0 0.75 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 2800 1;
 #X floatatom 261 222 5 0 0 0 - - -;
 #X msg 28 109 0 2000;
 #X msg 152 45 read -resize HowtoplaySax.wav SoundData;
@@ -1287,7 +1287,7 @@
 #X connect 21 0 11 0;
 #X connect 22 0 2 0;
 #X restore 361 629 pd sax;
-#N canvas 51 90 604 421 violin_inst 1;
+#N canvas 88 69 604 421 violin_inst 1;
 #X obj 218 95 vline~;
 #X msg 307 100 0 1000;
 #X obj 113 76 pack f f;
@@ -1380,9 +1380,9 @@
 #X connect 21 0 18 0;
 #X restore 379 156 pd reverb;
 #X obj 473 156 hsl 128 15 0 1 0 0 reverbWetDry reverbWetDry Reverb:_Dry_---_Wet
--2 -8 0 10 -262144 -1 -1 0 1;
+-2 -8 0 10 -262144 -1 -1 1800 1;
 #X obj 480 192 hsl 128 15 0 1 0 0 mgain mgain Master_Gain -2 -8 0 10
--262144 -1 -1 200 1;
+-262144 -1 -1 1800 1;
 #N canvas 183 60 329 243 masterGain 0;
 #X obj 84 126 *~;
 #X floatatom 104 102 5 0 0 0 - - -;
@@ -1413,7 +1413,7 @@
 #X obj 127 205 outlet~;
 #X text 478 218 Increase reverb and gain;
 #X text 492 240 for violin/voice sound;
-#N canvas 461 28 943 807 violin 1;
+#N canvas 461 28 943 807 violin 0;
 #N canvas 535 206 614 395 sub.karplus 0;
 #X obj 12 12 block~ 1 1 1;
 #X obj 12 307 inlet~;
@@ -1915,7 +1915,7 @@
 #X obj 312 607 hsl 128 15 0 1 0 0 lopGain lopGain LowPass_Gain -2 -8
 0 10 -262144 -1 -1 0 1;
 #X obj 169 604 hsl 128 15 50 4000 0 0 lopFreq lopFreq LowPass_Frequency
--2 -8 0 10 -262144 -1 -1 1200 1;
+-2 -8 0 10 -262144 -1 -1 0 1;
 #X obj 312 650 hsl 128 15 0 1 0 0 bpGain bpGain BandPass_Gain -2 -8
 0 10 -262144 -1 -1 0 1;
 #X obj 169 645 hsl 128 15 1000 4000 0 0 bpFreq bpFreq BandPass_Frequency
@@ -1923,7 +1923,7 @@
 #X obj 312 694 hsl 128 15 0 1 0 0 hpGain hpGain HighPass_Gain -2 -8
 0 10 -262144 -1 -1 0 1;
 #X obj 167 690 hsl 128 15 1000 4000 0 0 hpFreq hpFreq HighPass_Frequency
--2 -8 0 10 -262144 -1 -1 3400 1;
+-2 -8 0 10 -262144 -1 -1 0 1;
 #X obj 119 622 tgl 15 0 bypassFilterBank bypassFilterBank empty 17
 7 0 10 -262144 -1 -1 0 1;
 #X text 108 598 Bypass;
@@ -2178,14 +2178,13 @@
 #X connect 40 0 25 0;
 #X connect 41 0 22 0;
 #X connect 42 0 63 0;
+#X connect 42 0 0 0;
 #X connect 43 0 2 0;
 #X connect 43 0 16 0;
 #X connect 44 0 66 0;
 #X connect 45 0 23 1;
 #X connect 46 0 24 0;
 #X connect 52 0 41 1;
-#X connect 53 0 0 0;
-#X connect 62 0 0 0;
 #X connect 63 0 64 0;
 #X connect 63 1 64 1;
 #X connect 64 0 62 0;
@@ -2210,7 +2209,7 @@
 #X connect 17 0 14 0;
 #X connect 18 0 0 0;
 #X restore 692 669 pd violin_inst;
-#X msg 824 667 0.05 \$1 \, 0 \$1 \$1;
+#X msg 824 667 0.25 \$1 \, 0 \$1 \$1;
 #X connect 1 0 42 0;
 #X connect 2 0 42 1;
 #X connect 9 0 13 0;
