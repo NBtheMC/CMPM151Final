@@ -28,8 +28,6 @@ public class ViolinEnemy : CharaDamage
     {
         player = GameManager.Instance.GetPlayerTransform();
         shootingTiming = GameManager.Instance.GetShootingTiming();
-        //set type
-        type = 2;
         spriteRenderer = GetComponent<SpriteRenderer>();
         shootingTiming.GetComponent<ShootingTiming>().OnBeat += ShootingTiming_OnBeat;
     }
