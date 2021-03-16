@@ -280,6 +280,7 @@ MonoBehaviour:
   deathTransparency: 50
   fadeSpeed: 5
   hurtBox: {fileID: 8511240765188120625}
+  pushBox: {fileID: 8511240766165208618}
   type: 1
 --- !u!50 &8511240766410882219
 Rigidbody2D:
