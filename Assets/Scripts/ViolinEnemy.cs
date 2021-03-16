@@ -16,6 +16,8 @@ public class ViolinEnemy : CharaDamage
     private float deathTransparency = 50, fadeSpeed = 5;
     [SerializeField]
     private BoxCollider2D hurtBox = null;
+    [SerializeField]
+    private BoxCollider2D pushBox = null;
 
     private Color transparency; // for death
     private SpriteRenderer spriteRenderer; // also prolly for death
@@ -103,6 +105,7 @@ public class ViolinEnemy : CharaDamage
         damageable = false;
         dead = true;
         hurtBox.enabled = false;
+        pushBox.enabled = false;
         transparency = new Color(1, 1, 1, deathTransparency / 100);
         spriteRenderer.color = transparency;
     }

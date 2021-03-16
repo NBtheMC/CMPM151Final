@@ -5,10 +5,12 @@ using UnityEngine;
 public class Saxnote : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 5, damage = 0, knockback = 0.5f;
+    private float speed = 5, qdamage = 0, hdamage = 0, wdamage, knockback = 0.5f;
+    private float damage = 0;
     private Rigidbody2D rb2D;
     private NoteType note;  //what to spawn in as
     private Sprite currentSprite;
+    private bool pierce = false;
     [SerializeField]
     public Sprite quarterSprite, halfSprite, wholeSprite;
     
@@ -22,19 +24,20 @@ public class Saxnote : MonoBehaviour
             case NoteType.quarter:
                 Debug.Log("quarter");
                 this.GetComponent<SpriteRenderer>().sprite = quarterSprite;
-                damage = 1;
+                damage = qdamage;
                 break;
 
             case NoteType.half:
                 Debug.Log("half");
                 this.GetComponent<SpriteRenderer>().sprite = halfSprite;
-                damage = 2;
+                damage = hdamage;
                 break;
 
             case NoteType.whole:
                 Debug.Log("whole");
                 this.GetComponent<SpriteRenderer>().sprite = wholeSprite;
-                damage = 4;
+                damage = wdamage;
+                pierce = true;
                 break;
         }
 
@@ -50,6 +53,7 @@ public class Saxnote : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Damageable d = collision.transform.root.GetComponent<Damageable>();
+        
         if (d != null)
         {
             Vector2 hitForce = rb2D.velocity;
@@ -57,7 +61,14 @@ public class Saxnote : MonoBehaviour
             hitForce *= knockback;
 
             GameManager.Instance.DamageGeneral(d, damage, hitForce);
+            if(!pierce)
+            {
+                Destroy(this.gameObject);
+            }
         }
-        Destroy(this.gameObject);//Add in an animation and add it to a pool for better performance
+        else
+        {
+            Destroy(this.gameObject);//Add in an animation and add it to a pool for better performance
+        }
     }
 }
