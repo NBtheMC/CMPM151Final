@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
-    private float spawnRate = 1.0f;
+    private float spawnRate = 5.0f;
     private float timeBetweenWaves = 10f;
 
     public int enemyCount = 3; // how many in each wave
