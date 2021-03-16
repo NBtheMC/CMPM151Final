@@ -1708,7 +1708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  speed: 7.5
+  speed: 7.49
   hitstunLength: 0.1
   musicBullet: {fileID: 359387781784388478, guid: 428d4b9413c56dd4cb72cb33b88d2f46,
     type: 3}
@@ -1775,7 +1775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1955074765}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.869999, y: -7.77, z: -0.8923525}
+  m_LocalPosition: {x: -16.6, y: -7.75, z: -0.8923525}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1593086071}
