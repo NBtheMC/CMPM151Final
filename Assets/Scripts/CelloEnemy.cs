@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ViolinEnemy : CharaDamage
+public class CelloEnemy : CharaDamage
 {
     private Transform player;
 
@@ -13,7 +13,7 @@ public class ViolinEnemy : CharaDamage
     [SerializeField]
     private GameObject musicBullet = null;
     [SerializeField]
-    private float deathTransparency = 50, fadeSpeed = 2;
+    private float deathTransparency = 50, fadeSpeed = 5;
     [SerializeField]
     private BoxCollider2D hurtBox = null;
     [SerializeField]
@@ -22,7 +22,6 @@ public class ViolinEnemy : CharaDamage
     private Color transparency; // for death
     private SpriteRenderer spriteRenderer; // also prolly for death
     private float dist = 0f;    // measurement used for keeping @ range.
-    public int type; // either 1, 2, 3, or 4. shoots on different beats
 
     protected void Start()
     {
@@ -32,42 +31,14 @@ public class ViolinEnemy : CharaDamage
         shootingTiming.GetComponent<ShootingTiming>().OnBeat += ShootingTiming_OnBeat;
     }
 
-    public void setType(int newType)
-    {
-        type = newType;
-    }
-
     private void ShootingTiming_OnBeat(object sender, EventArgs e)
     {
         if (!dead)
         {
             //shoot based on beat
-            switch (shootingTiming.GetComponent<ShootingTiming>().getBeat())
+            if (shootingTiming.GetComponent<ShootingTiming>().getBeat() == 1)
             {
-                case 1:
-                    if (type == 1 || type == 2)
-                    {
-                        Shoot();
-                    }
-                    break;
-                case 2:
-                    if (type == 4)
-                    {
-                        Shoot();
-                    }
-                    break;
-                case 3:
-                    if (type == 3 || type == 2)
-                    {
-                        Shoot();
-                    }
-                    break;
-                case 4:
-                    if (type == 4)
-                    {
-                        Shoot();
-                    }
-                    break;
+                Shoot();
             }
         }
     }
@@ -80,7 +51,7 @@ public class ViolinEnemy : CharaDamage
             if (spriteRenderer.color.a <= 0)
                 Destroy(gameObject);
             else
-                spriteRenderer.color = new Color(1, 1, 1, spriteRenderer.color.a - fadeSpeed/100 * Time.deltaTime);
+                spriteRenderer.color = new Color(1, 1, 1, spriteRenderer.color.a - fadeSpeed / 100 * Time.deltaTime);
         }
         else
         {
@@ -89,17 +60,19 @@ public class ViolinEnemy : CharaDamage
         }
     }
 
-    public void FixedUpdate() {
-        if(dist > 5 && dist < 15 && !dead) {
+    public void FixedUpdate()
+    {
+        if (dist > 5 && dist < 15 && !dead)
+        {
             Vector3 localPosition = player.transform.position - transform.position;
             localPosition = localPosition.normalized; // The normalized direction in LOCAL space
-            transform.Translate(localPosition.x * Time.deltaTime * speed/4, localPosition.y * Time.deltaTime * speed/4,
-                                 localPosition.z * Time.deltaTime * speed/4);
+            transform.Translate(localPosition.x * Time.deltaTime * speed / 4, localPosition.y * Time.deltaTime * speed / 4,
+                                 localPosition.z * Time.deltaTime * speed / 4);
         }
     }
 
     protected override void Die()
-    {      
+    {
         damageable = false;
         dead = true;
         hurtBox.enabled = false;
@@ -110,22 +83,8 @@ public class ViolinEnemy : CharaDamage
 
     protected void Shoot()
     {
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/shoot/cello", 1);
         //check type again to send appropriate bang to pd
-        switch (type)
-        {
-            case 1:
-                OSCHandler.Instance.SendMessageToClient("pd", "/unity/shoot/violin1", 1);
-                break;
-            case 2:
-                OSCHandler.Instance.SendMessageToClient("pd", "/unity/shoot/violin2", 1);
-                break;
-            case 3:
-                OSCHandler.Instance.SendMessageToClient("pd", "/unity/shoot/violin3", 1);
-                break;
-            case 4:
-                OSCHandler.Instance.SendMessageToClient("pd", "/unity/shoot/violin4", 1);
-                break;
-        }
         GameObject note = Instantiate(musicBullet, transform.position, Quaternion.Euler(0, 0, 0));
         note.transform.parent = this.transform;
 
