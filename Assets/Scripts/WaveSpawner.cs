@@ -11,7 +11,7 @@ public class WaveSpawner : MonoBehaviour
     public int wave;
 
     //used for spawning in enemies
-    public GameObject violin;
+    public GameObject violin1, violin2, violin3, violin4;
     public GameObject cello;
 
     bool waveIsDone = true;
@@ -34,9 +34,23 @@ public class WaveSpawner : MonoBehaviour
         {
             for (int j = 0; j < enemyCount; j++)
             {
-                GameObject violinEnemy = Instantiate(violin);
-                violinEnemy.GetComponent<ViolinEnemy>().setType(Random.Range(0, 4));
-
+                GameObject violinEnemy;
+                int type = Random.Range(1, 4);
+                switch (type)
+                {
+                    case 1:
+                        violinEnemy = Instantiate(violin1);
+                        break;
+                    case 2:
+                        violinEnemy = Instantiate(violin2);
+                        break;
+                    case 3:
+                        violinEnemy = Instantiate(violin3);
+                        break;
+                    case 4:
+                        violinEnemy = Instantiate(violin4);
+                        break;
+                }
                 yield return new WaitForSeconds(spawnRate);
             }
             yield return new WaitForSeconds(timeBetweenWaves);

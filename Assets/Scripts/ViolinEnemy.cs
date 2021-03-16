@@ -20,7 +20,7 @@ public class ViolinEnemy : CharaDamage
     private Color transparency; // for death
     private SpriteRenderer spriteRenderer; // also prolly for death
     private float dist = 0f;    // measurement used for keeping @ range.
-    private int type; // either 1, 2, 3, or 4. shoots on different beats
+    public int type; // either 1, 2, 3, or 4. shoots on different beats
 
     protected void Start()
     {
