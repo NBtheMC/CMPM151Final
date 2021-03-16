@@ -127,5 +127,16 @@ public class ViolinEnemy : CharaDamage
         }
         GameObject note = Instantiate(musicBullet, transform.position, Quaternion.Euler(0, 0, 0));
         note.transform.parent = this.transform;
+
+        //animation stuff
+        if (animator.GetBool("atk2"))
+        {
+            animator.SetBool("atk2", false);
+        }
+        else
+        {
+            animator.SetBool("atk2", true);
+        }
+        animator.SetTrigger("atk");
     }
 }

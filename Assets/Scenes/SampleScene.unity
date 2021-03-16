@@ -1472,7 +1472,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCount: 4
   wave: 0
-  violin: {fileID: 8511240766410882263, guid: 243da54f24554eb4c81852e2a57f260e, type: 3}
+  violin1: {fileID: 8511240766410882263, guid: 243da54f24554eb4c81852e2a57f260e, type: 3}
+  violin2: {fileID: 9049878707285182671, guid: 62e1991f7ed06b943bf68ee61c9ee5c9, type: 3}
+  violin3: {fileID: 2768367556844077806, guid: f3d7ad4a1ffb65446acc5c4868da3aef, type: 3}
+  violin4: {fileID: 5126587322912984709, guid: 687d4be7f2e86ce4ca6bf735e01443a1, type: 3}
   cello: {fileID: 0}
 --- !u!4 &1548493478
 Transform:

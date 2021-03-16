@@ -44,7 +44,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 63.66799, y: 16.827522}
+  m_Offset: {x: 65.69859, y: 16.371672}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.9568367, y: 13.712879}
+  m_Size: {x: 7.0397034, y: 9.780064}
   m_EdgeRadius: 0
 --- !u!1 &8511240765586847629
 GameObject:
@@ -101,7 +101,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 62.80081, y: 13.958098}
+  m_Offset: {x: 65.08007, y: 14.206745}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -112,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.5481415, y: 6.1627865}
+  m_Size: {x: 6.294052, y: 5.665493}
   m_EdgeRadius: 0
 --- !u!1 &8511240766165208660
 GameObject:
@@ -158,7 +158,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 63.479645, y: 15.530829}
+  m_Offset: {x: 65.593155, y: 16.06956}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -169,7 +169,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.772888, y: 8.736074}
+  m_Size: {x: 5.363922, y: 7.0814247}
   m_EdgeRadius: 0
 --- !u!1 &8511240766410882263
 GameObject:
@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 8511240766410882218}
   - component: {fileID: 8511240766410882219}
   - component: {fileID: 8511240766410882216}
+  - component: {fileID: 1748659819}
   m_Layer: 0
   m_Name: ViolinEnemy
   m_TagString: Untagged
@@ -257,7 +258,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &8511240766410882218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,7 +318,7 @@ BoxCollider2D:
   m_Offset: {x: 0.054614067, y: -0.3914001}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.35371387, y: 0.462558}
     oldSize: {x: 1.75, y: 2.11}
     newSize: {x: 2.85, y: 3.86}
     adaptiveTilingThreshold: 0.5
@@ -327,3 +328,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9897671, y: 1.499258}
   m_EdgeRadius: 0
+--- !u!95 &1748659819
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8511240766410882263}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ff73ad854eae01143829b3f07bc8bc6e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
