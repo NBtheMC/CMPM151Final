@@ -44,7 +44,10 @@ public class Saxnote : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
 
         //perfect or not
+        if (GameManager.Instance.GetShootingTiming().GetComponent<ShootingTiming>().isPerfect())
+        {
 
+        }
         var dir = GameManager.Instance.FireToCursor();
         dir.Normalize();
         rb2D.AddForce(dir * speed, ForceMode2D.Impulse);

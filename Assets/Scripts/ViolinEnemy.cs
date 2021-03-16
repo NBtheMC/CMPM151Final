@@ -51,19 +51,19 @@ public class ViolinEnemy : CharaDamage
                     }
                     break;
                 case 2:
-                    if (type == 3)
+                    if (type == 4)
                     {
                         Shoot();
                     }
                     break;
                 case 3:
-                    if (type == 1 || type == 4)
+                    if (type == 3 || type == 2)
                     {
                         Shoot();
                     }
                     break;
                 case 4:
-                    if (type == 3)
+                    if (type == 4)
                     {
                         Shoot();
                     }
