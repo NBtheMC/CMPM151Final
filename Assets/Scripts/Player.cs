@@ -21,19 +21,16 @@ public class Player : CharaDamage
     private Vector2 thisPos, debugMouse;
 
     //Note Stuff
-    private NoteType currentNote = NoteType.quarter;  //can switch between note types
-    private float quarterCountdown;
-    private float halfCountdown;
-    private float wholeCountdown;
     private float tempo;
+    private NoteType currentNote = NoteType.quarter;  //can switch between note types
+    private float currentCountdown; //keeps track of when player can shoot notes again based off of tempo
+    
 
     protected void Start()
     {
-        //everything else based off of the countdown
+        //shooting time based off of the tempo
         tempo = GameManager.Instance.getTempo();
-        quarterCountdown = tempo - .1f;
-        halfCountdown = quarterCountdown * 2;
-        wholeCountdown = quarterCountdown * 4;
+        currentCountdown = 0;
     }
 
     protected override void Update()
@@ -53,6 +50,7 @@ public class Player : CharaDamage
         }
 
         movement.Normalize();
+
         //switch to quarter note
         if (Input.GetKeyDown("1"))
         {
@@ -71,36 +69,28 @@ public class Player : CharaDamage
             currentNote = NoteType.whole;
             GameManager.Instance.ChangeSelect(3);
         }
-        //countdowns
-        if (quarterCountdown > 0)
+        //countdown
+        if (currentCountdown > 0)
         {
-            quarterCountdown -= Time.deltaTime;
-        }
-        if (halfCountdown > 0)
-        {
-            halfCountdown -= Time.deltaTime;
-        }
-        if (wholeCountdown > 0)
-        {
-            wholeCountdown -= Time.deltaTime;
+            currentCountdown -= Time.deltaTime;
         }
         //left mouse click to shoot. depends on current note
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && currentCountdown <= 0)
         {
-            if (currentNote == NoteType.quarter && quarterCountdown <= 0)
+            if (currentNote == NoteType.quarter)
             {
                 Shoot(NoteType.quarter);
-                quarterCountdown = tempo - .1f; //reset countdown after shooting 
+                currentCountdown = tempo - .1f; //reset countdown after shooting 
             }
-            else if (currentNote == NoteType.half && halfCountdown <= 0)
+            else if (currentNote == NoteType.half)
             {
                 Shoot(NoteType.half);
-                halfCountdown = tempo*2 - .1f; //reset countdown after shooting 
+                currentCountdown = tempo*2 - .1f; //reset countdown after shooting 
             }
-            else if (currentNote == NoteType.whole && wholeCountdown <= 0)
+            else if (currentNote == NoteType.whole)
             {
                 Shoot(NoteType.whole);
-                wholeCountdown = tempo*4 - .1f; //reset countdown after shooting 
+                currentCountdown = tempo*4 - .1f; //reset countdown after shooting 
             }
         }
         //flip player based on mouse position
