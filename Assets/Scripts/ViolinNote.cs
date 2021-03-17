@@ -16,7 +16,7 @@ public class ViolinNote : MonoBehaviour
 
     void Start()
     {
-        note = GameManager.Instance.GetNote();
+        note = this.transform.parent.GetComponent<ViolinEnemy>().getNote();
         //set type, image, and variables here
         switch (note)
         {
@@ -30,12 +30,6 @@ public class ViolinNote : MonoBehaviour
                 Debug.Log("half");
                 this.GetComponent<SpriteRenderer>().sprite = halfSprite;
                 damage = 2;
-                break;
-
-            case NoteType.whole:
-                Debug.Log("whole");
-                this.GetComponent<SpriteRenderer>().sprite = wholeSprite;
-                damage = 4;
                 break;
         }
 
