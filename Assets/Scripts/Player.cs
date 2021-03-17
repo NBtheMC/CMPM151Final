@@ -175,6 +175,15 @@ public class Player : CharaDamage
         return currentNote;
     }
 
+    public override void Hurt(float damage, Vector2 hitForce)
+    {
+        if (damageable)
+        {
+            base.Hurt(damage, hitForce);
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/hurt", 1);
+        }
+    }
+
     protected override void Die()
     {
         damageable = false;

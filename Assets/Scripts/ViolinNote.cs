@@ -52,7 +52,6 @@ public class ViolinNote : MonoBehaviour
             hitForce *= knockback;
 
             GameManager.Instance.DamageGeneral(d, damage, hitForce);
-            OSCHandler.Instance.SendMessageToClient("pd", "/unity/hurt", 1);
         }
         Destroy(this.gameObject);//Add in an animation and add it to a pool for better performance
     }
