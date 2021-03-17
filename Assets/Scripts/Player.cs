@@ -35,6 +35,8 @@ public class Player : CharaDamage
 
     protected override void Update()
     {
+        tempo = GameManager.Instance.getTempo();
+
         //Input
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Saxnote : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 5, qdamage = 0, hdamage = 0, wdamage, knockback = 0.5f;
+    private float speed = 5, qdamage = 0, hdamage = 0, wdamage = 0, knockback = 0.5f;
     private float damage = 0;
     private Rigidbody2D rb2D;
     private NoteType note;  //what to spawn in as
