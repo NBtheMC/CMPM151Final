@@ -23,6 +23,7 @@ public class ViolinEnemy : CharaDamage
     private SpriteRenderer spriteRenderer; // also prolly for death
     private float dist = 0f;    // measurement used for keeping @ range.
     public int type; // either 1, 2, 3, or 4. shoots on different beats
+    public NoteType noteType; //based on type
 
     protected void Start()
     {
@@ -32,9 +33,23 @@ public class ViolinEnemy : CharaDamage
         shootingTiming.GetComponent<ShootingTiming>().OnBeat += ShootingTiming_OnBeat;
     }
 
+    //type related to note type
     public void setType(int newType)
     {
         type = newType;
+        if(type == 1 || type == 3)
+        {
+            noteType = NoteType.half;
+        }
+        if (type == 2 || type == 4)
+        {
+            noteType = NoteType.quarter;
+        }
+    }
+
+    public NoteType getNote()
+    {
+        return noteType;
     }
 
     private void ShootingTiming_OnBeat(object sender, EventArgs e)
@@ -139,5 +154,25 @@ public class ViolinEnemy : CharaDamage
             animator.SetBool("atk2", true);
         }
         animator.SetTrigger("atk");
+    }
+
+    public override void Hurt(float damage, Vector2 hitForce)
+    {
+        if (damageable)
+        {
+            hitstun = hitstunLength;
+            actionable = false;
+
+            if (damageable)
+            {
+                health -= damage;
+                if (health <= 0)
+                {
+                    Die();
+                }
+            }
+            rb.MovePosition((Vector2) transform.position + hitForce * Time.deltaTime);
+            Debug.Log("Hit for " + damage + "\nVector is " + hitForce);
+        }
     }
 }

@@ -31,6 +31,7 @@ public class Saxnote : MonoBehaviour
                 Debug.Log("half");
                 this.GetComponent<SpriteRenderer>().sprite = halfSprite;
                 damage = hdamage;
+                knockback *= 1.5f;
                 break;
 
             case NoteType.whole:
@@ -38,6 +39,7 @@ public class Saxnote : MonoBehaviour
                 this.GetComponent<SpriteRenderer>().sprite = wholeSprite;
                 damage = wdamage;
                 pierce = true;
+                knockback *= 2;
                 break;
         }
 

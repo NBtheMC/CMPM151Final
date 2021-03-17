@@ -12,8 +12,7 @@ public class Player : CharaDamage
     [SerializeField]
     private GameObject sax = null;
     private Vector2 hotSpot = Vector2.zero;
-    Vector2 movement;
-
+    private Vector2 movement;
 
     //angle debug stuff
     [SerializeField]
@@ -146,7 +145,11 @@ public class Player : CharaDamage
     protected void FixedUpdate()
     {
         //Actual movement
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        //rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        veloTarget = new Vector2(movement.x * speed, movement.y * speed);
+        veloChange = veloTarget - new Vector2(rb.velocity.x, rb.velocity.y);
+        veloChange.x = Mathf.Clamp(veloChange.x, -changeSpeed, changeSpeed);
+        rb.AddForce(veloChange, ForceMode2D.Impulse);
     }
 
     protected void Shoot(NoteType shotNote)

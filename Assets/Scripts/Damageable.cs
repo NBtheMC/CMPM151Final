@@ -5,7 +5,7 @@ using UnityEngine;
 public class Damageable : MonoBehaviour
 {
     [SerializeField]
-    protected float health, speed;
+    protected float health, speed, changeSpeed;
     protected bool damageable = true, dead = false;
 
     protected Rigidbody2D rb;
