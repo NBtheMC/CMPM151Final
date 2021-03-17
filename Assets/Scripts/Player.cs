@@ -174,4 +174,10 @@ public class Player : CharaDamage
     {
         return currentNote;
     }
+
+    protected override void Die()
+    {
+        damageable = false;
+        GameManager.Instance.FadeOn();
+    }
 }

@@ -25,8 +25,9 @@ public class GameManager : MonoBehaviour
 
     //tempo stuff
     [SerializeField]
-    private float tempo = 0.3f; //each beat, in seconds
-    //private bool onBeat = true; 
+    private float tempo = 0.3f, fadeTime = 5; //each beat, in seconds
+    private float fadeLerp = 0;
+    private bool fadeOff = true; 
 
     Player player;
     GameObject playerObject;
@@ -37,11 +38,10 @@ public class GameManager : MonoBehaviour
 
     //UI select stuff
     [SerializeField]
-    private GameObject Select1 = null;
+    private GameObject Select1 = null, Select2 = null, Select3 = null;
+
     [SerializeField]
-    private GameObject Select2 = null;
-    [SerializeField]
-    private GameObject Select3 = null;
+    private Image fade;
 
     void Awake()
     {
@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour
         //OSC stuff
         OSCHandler.Instance.Init();
         OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", tempo * 1000);
+        fade.enabled = true;
+        fadeOff = true;
     }
 
     void Start()
@@ -63,6 +65,21 @@ public class GameManager : MonoBehaviour
         UnityEngine.Cursor.visible = false;
     }
 
+    void Update()
+    {
+        if(fadeOff && fade.color.a > 0)
+        {
+            fade.color = Color.Lerp(Color.black, Color.clear, fadeLerp);
+            if (fadeLerp < 1)
+                fadeLerp += Time.deltaTime / fadeTime;
+        }
+        else if (!fadeOff && fade.color.a < 1)
+        {
+            fade.color = Color.Lerp(Color.clear, Color.black, fadeLerp);
+            if (fadeLerp < 1)
+                fadeLerp += Time.deltaTime / fadeTime;
+        }
+    }
 
     void FixedUpdate()
     {
@@ -150,5 +167,19 @@ public class GameManager : MonoBehaviour
     {
         tempo = newTempo;
         return;
+    }
+
+    public void FadeOff()
+    {
+        fadeTime /= 2;
+        fadeOff = true;
+        fadeLerp = 0;
+    }
+
+    public void FadeOn()
+    {
+        fadeTime *= 2;
+        fadeOff = false;
+        fadeLerp = 0;
     }
 }
