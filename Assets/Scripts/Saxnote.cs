@@ -45,10 +45,12 @@ public class Saxnote : MonoBehaviour
 
         rb2D = GetComponent<Rigidbody2D>();
 
-        //perfect or not
+        //modify the note if its shot on time
         if (GameManager.Instance.GetShootingTiming().GetComponent<ShootingTiming>().isPerfect())
         {
-
+            damage *= 1.5f;
+            this.transform.localScale *= new Vector2(1.5f,1.5f);
+            //make sound
         }
         var dir = GameManager.Instance.FireToCursor();
         dir.Normalize();

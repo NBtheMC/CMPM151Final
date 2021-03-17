@@ -213,11 +213,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f09055f599b4f8d42995864b60999b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
+  health: 30
   speed: 7.5
+  changeSpeed: 0
   hitstunLength: 0.1
   shootingTiming: {fileID: 0}
-  musicBullet: {fileID: 800111551182038244, guid: 47ecb72f6cd047046815d4f435b203f7,
+  musicBullet: {fileID: 3987807939695369974, guid: 1ed2ad3253015694d8771d4591da5a08,
     type: 3}
   deathTransparency: 50
   fadeSpeed: 5
@@ -257,12 +258,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &8875806728111943455
 GameObject:
   m_ObjectHideFlags: 0

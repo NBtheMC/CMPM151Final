@@ -56,7 +56,6 @@ public class CelloEnemy : CharaDamage
         else
         {
             base.Update();
-            //Shoot();
         }
     }
 
