@@ -61,6 +61,11 @@ public class ShootingTiming : MonoBehaviour
         }
     }
 
+    void OnApplicationQuit()
+    {
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/start_stop", 1);
+    }
+
     public void Testing_OnBeat(object sender, EventArgs e)
     {
         Debug.Log("Beat: " + getBeat());
