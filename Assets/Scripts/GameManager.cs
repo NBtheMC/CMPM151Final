@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     private GameObject Select1 = null, Select2 = null, Select3 = null;
 
     [SerializeField]
-    private Image fade;
+    private Image fade = null;
 
     void Awake()
     {

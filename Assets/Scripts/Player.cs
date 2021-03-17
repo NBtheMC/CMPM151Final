@@ -16,7 +16,7 @@ public class Player : CharaDamage
 
     //angle debug stuff
     [SerializeField]
-    private float angle = 0;
+    private float angle = 0, saxExpand = 1.5f, saxExpandSpeed = 0.1f;//multiplier
     [SerializeField]
     private Vector2 thisPos, debugMouse;
 
@@ -142,6 +142,26 @@ public class Player : CharaDamage
         veloChange = veloTarget - new Vector2(rb.velocity.x, rb.velocity.y);
         veloChange.x = Mathf.Clamp(veloChange.x, -changeSpeed, changeSpeed);
         rb.AddForce(veloChange, ForceMode2D.Impulse);
+
+        //expand sax
+        if(currentCountdown > 0)
+        {
+            if(sax.transform.localScale.x < saxExpand)
+            {
+                sax.transform.localScale = new Vector3(sax.transform.localScale.x+saxExpandSpeed, 1, 1);
+            }
+        }
+        else//deflate sax
+        {
+            if (sax.transform.localScale.x > 1)
+            {
+                sax.transform.localScale = new Vector3(sax.transform.localScale.x - saxExpandSpeed, 1, 1);
+            }
+            else
+            {
+                sax.transform.localScale = new Vector3(1, 1, 1);
+            }
+        }
     }
 
     protected void Shoot(NoteType shotNote)
