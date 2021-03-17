@@ -179,7 +179,7 @@ MonoBehaviour:
   qdamage: 2
   hdamage: 3
   wdamage: 4
-  knockback: 0.5
+  knockback: 8
   quarterSprite: {fileID: 21300000, guid: 7f359672dde77844cafbe7874a56765a, type: 3}
   halfSprite: {fileID: 21300000, guid: e0dc96af3078d0f40bc5f306b8d3ed45, type: 3}
   wholeSprite: {fileID: 21300000, guid: 3a8be6d85f3f8d14db2e0b7f8cc374a2, type: 3}

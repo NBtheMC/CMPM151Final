@@ -155,4 +155,24 @@ public class ViolinEnemy : CharaDamage
         }
         animator.SetTrigger("atk");
     }
+
+    public override void Hurt(float damage, Vector2 hitForce)
+    {
+        if (damageable)
+        {
+            hitstun = hitstunLength;
+            actionable = false;
+
+            if (damageable)
+            {
+                health -= damage;
+                if (health <= 0)
+                {
+                    Die();
+                }
+            }
+            rb.MovePosition((Vector2) transform.position + hitForce * Time.deltaTime);
+            Debug.Log("Hit for " + damage + "\nVector is " + hitForce);
+        }
+    }
 }
