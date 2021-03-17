@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   damage: 1
-  knockback: 0.5
+  knockback: 10
   quarterSprite: {fileID: 21300000, guid: 5b4e99fc9b46fa2489838f07710d30aa, type: 3}
   halfSprite: {fileID: 21300000, guid: 092f39bd040b55f42b6a9c8acbd192da, type: 3}
   wholeSprite: {fileID: 21300000, guid: ce88880d447c9484b83c50c831d03eac, type: 3}

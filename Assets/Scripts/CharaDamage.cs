@@ -11,6 +11,8 @@ public class CharaDamage : Damageable
     protected float hitstun = 0f;
     protected bool actionable = true;
 
+    protected Vector2 veloTarget, veloChange;
+
     public CharaDamage()//For declaring stuff
     {
     }
