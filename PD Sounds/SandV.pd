@@ -119,7 +119,7 @@
 #X connect 49 0 50 0;
 #X connect 50 0 51 0;
 #X restore 47 142 pd oscReceive;
-#X obj 47 36 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+#X obj 47 36 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
 #X msg 47 61 \; pd dsp \$1;
 #X obj 44 278 oscformat PD message;
@@ -207,7 +207,7 @@
 #X restore 533 204 pd cello_notes;
 #X floatatom 533 252 5 0 0 0 bass_line - -;
 #X obj 533 135 tgl 15 0 empty empty Start/stop 17 7 0 10 -262144 -1
--1 1 1;
+-1 0 1;
 #X obj 1064 82 * 2;
 #X obj 1188 82 * 4;
 #X floatatom 1064 111 5 0 0 0 half_tempo - -;
@@ -572,7 +572,7 @@
 #X obj 807 19 loadbang;
 #X msg 838 64 300;
 #X obj 514 413 *~;
-#N canvas 0 22 943 756 cello 0;
+#N canvas 80 62 943 756 cello 0;
 #N canvas 680 338 614 395 sub.karplus 0;
 #X obj 12 12 block~ 1 1 1;
 #X obj 12 307 inlet~;
