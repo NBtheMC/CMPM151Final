@@ -207,7 +207,7 @@
 #X restore 533 204 pd cello_notes;
 #X floatatom 533 252 5 0 0 0 bass_line - -;
 #X obj 533 135 tgl 15 0 empty empty Start/stop 17 7 0 10 -262144 -1
--1 0 1;
+-1 1 1;
 #X obj 1064 82 * 2;
 #X obj 1188 82 * 4;
 #X floatatom 1064 111 5 0 0 0 half_tempo - -;
@@ -1154,7 +1154,7 @@
 #X obj 200 251 *~;
 #X obj 262 301 vline~;
 #X msg 300 276 0 1000;
-#N canvas 940 295 740 505 reverb 0;
+#N canvas 79 287 740 505 reverb 0;
 #X obj 162 49 inlet~;
 #X obj 144 364 outlet~;
 #X floatatom 444 156 0 0 120 0 - - -;
@@ -1172,11 +1172,11 @@
 #X floatatom 66 261 5 0 0 0 - - -;
 #X text 355 299 wet reverb signal;
 #X text 103 264 "dry" signal;
-#X obj 409 32 receive reverbWetDry;
 #X floatatom 410 59 5 0 0 0 - - -;
 #X obj 82 215 expr 1 - $f1;
 #X obj 340 3 loadbang;
 #X msg 340 33 0;
+#X obj 409 32 receive reverbWD;
 #X connect 0 0 13 0;
 #X connect 0 0 10 0;
 #X connect 2 0 10 2;
@@ -1191,14 +1191,14 @@
 #X connect 12 0 11 1;
 #X connect 13 0 1 0;
 #X connect 14 0 13 1;
+#X connect 17 0 12 0;
 #X connect 17 0 18 0;
-#X connect 18 0 12 0;
-#X connect 18 0 19 0;
-#X connect 19 0 14 0;
-#X connect 20 0 21 0;
-#X connect 21 0 18 0;
+#X connect 18 0 14 0;
+#X connect 19 0 20 0;
+#X connect 20 0 17 0;
+#X connect 21 0 17 0;
 #X restore 162 332 pd reverb;
-#N canvas 940 295 740 505 reverb 0;
+#N canvas 484 233 740 505 reverb 0;
 #X obj 162 49 inlet~;
 #X obj 144 364 outlet~;
 #X floatatom 444 156 0 0 120 0 - - -;
@@ -1216,11 +1216,11 @@
 #X floatatom 66 261 5 0 0 0 - - -;
 #X text 355 299 wet reverb signal;
 #X text 103 264 "dry" signal;
-#X obj 409 32 receive reverbWetDry;
 #X floatatom 410 59 5 0 0 0 - - -;
 #X obj 82 215 expr 1 - $f1;
 #X obj 340 3 loadbang;
 #X msg 340 33 0;
+#X obj 409 32 receive reverbWD;
 #X connect 0 0 13 0;
 #X connect 0 0 10 0;
 #X connect 2 0 10 2;
@@ -1235,34 +1235,34 @@
 #X connect 12 0 11 1;
 #X connect 13 0 1 0;
 #X connect 14 0 13 1;
+#X connect 17 0 12 0;
 #X connect 17 0 18 0;
-#X connect 18 0 12 0;
-#X connect 18 0 19 0;
-#X connect 19 0 14 0;
-#X connect 20 0 21 0;
-#X connect 21 0 18 0;
+#X connect 18 0 14 0;
+#X connect 19 0 20 0;
+#X connect 20 0 17 0;
+#X connect 21 0 17 0;
 #X restore 243 331 pd reverb;
-#X obj 317 335 hsl 128 15 0 1 0 0 reverbWetDry reverbWetDry Reverb:_Dry_---_Wet
--2 -8 0 10 -262144 -1 -1 5715 1;
-#X obj 351 368 hsl 128 15 0 1 0 0 mgain mgain Master_Gain -2 -8 0 10
--262144 -1 -1 4100 1;
-#N canvas 183 60 329 243 masterGain 0;
+#X obj 317 335 hsl 128 15 0 1 0 0 reverbWD reverbWD Reverb:_Dry_---_Wet
+-2 -8 0 10 -262144 -1 -1 4826 1;
+#X obj 351 368 hsl 128 15 0 1 0 0 massivegain massivegain Master_Gain
+-2 -8 0 10 -262144 -1 -1 8128 1;
+#N canvas 166 49 329 243 masterGain 0;
 #X obj 84 126 *~;
 #X floatatom 104 102 5 0 0 0 - - -;
 #X obj 56 28 inlet~;
 #X obj 76 191 outlet~;
-#X obj 107 73 receive mgain;
+#X obj 107 73 receive massivegain;
 #X connect 0 0 3 0;
 #X connect 1 0 0 1;
 #X connect 2 0 0 0;
 #X connect 4 0 1 0;
 #X restore 249 366 pd masterGain;
-#N canvas 183 60 329 243 masterGain 0;
+#N canvas 496 49 329 243 masterGain 0;
 #X obj 84 126 *~;
 #X floatatom 104 102 5 0 0 0 - - -;
 #X obj 56 28 inlet~;
 #X obj 76 191 outlet~;
-#X obj 106 73 receive mgain;
+#X obj 106 73 receive massivegain;
 #X connect 0 0 3 0;
 #X connect 1 0 0 1;
 #X connect 2 0 0 0;
@@ -1287,9 +1287,6 @@
 #X msg 89 84 0.1318;
 #X text 257 69 wave form saved to array;
 #X obj 120 13 loadbang;
-#X obj 548 299 loadbang;
-#X msg 516 339 1;
-#X msg 473 309 0.45;
 #X connect 2 0 1 0;
 #X connect 3 0 8 0;
 #X connect 4 0 7 0;
@@ -1308,12 +1305,8 @@
 #X connect 19 0 12 0;
 #X connect 22 0 12 0;
 #X connect 24 0 17 0;
-#X connect 25 0 26 0;
-#X connect 25 0 27 0;
-#X connect 26 0 6 0;
-#X connect 27 0 5 0;
 #X restore 880 287 pd sax;
-#N canvas 194 146 641 421 violin_inst 0;
+#N canvas 686 91 641 421 violin_inst 0;
 #X obj 218 95 vline~;
 #X msg 307 100 0 1000;
 #X obj 113 76 pack f f;
@@ -1361,7 +1354,7 @@
 #X connect 20 0 21 0;
 #X connect 21 0 18 0;
 #X restore 250 156 pd reverb;
-#N canvas 940 295 740 505 reverb 0;
+#N canvas 700 295 740 505 reverb 0;
 #X obj 162 49 inlet~;
 #X obj 144 364 outlet~;
 #X floatatom 444 156 0 0 120 0 - - -;
@@ -1406,9 +1399,9 @@
 #X connect 21 0 18 0;
 #X restore 379 156 pd reverb;
 #X obj 473 156 hsl 128 15 0 1 0 0 reverbWetDry reverbWetDry Reverb:_Dry_---_Wet
--2 -8 0 10 -262144 -1 -1 2100 1;
-#X obj 480 192 hsl 128 15 0 1 0 0 mgain mgain Master_Gain -2 -8 0 10
--262144 -1 -1 12700 1;
+-2 -8 0 10 -262144 -1 -1 7112 1;
+#X obj 480 192 hsl 128 15 0 1.01 0 0 mgain mgain Master_Gain -2 -8
+0 10 -262144 -1 -1 8676 1;
 #N canvas 183 60 329 243 masterGain 0;
 #X obj 84 126 *~;
 #X floatatom 104 102 5 0 0 0 - - -;
@@ -2223,9 +2216,6 @@
 #X connect 75 0 9 1;
 #X restore 126 112 pd violin;
 #X msg 278 55 0.25 1350 0 1600;
-#X obj 520 66 loadbang;
-#X msg 447 93 1;
-#X msg 520 90 0.47;
 #X connect 1 0 0 0;
 #X connect 2 0 16 0;
 #X connect 3 0 8 0;
@@ -2237,21 +2227,17 @@
 #X connect 16 0 3 0;
 #X connect 16 0 4 0;
 #X connect 17 0 0 0;
-#X connect 18 0 19 0;
-#X connect 18 0 20 0;
-#X connect 19 0 6 0;
-#X connect 20 0 5 0;
 #X restore 692 669 pd violin_inst;
 #X msg 824 667 0.25 \$1 \, 0 \$1 \$1;
 #X text 284 625 Each string instrument has a;
 #X text 261 645 \$0-gate/\$0-midi receiver signal;
 #X text 231 665 these clash between other instances;
 #X text 284 684 so must be updated for each;
-#N canvas 88 68 604 421 violin_inst2 0;
+#N canvas 152 80 604 421 violin_inst2 0;
 #X obj 218 95 vline~;
 #X msg 307 100 0 1000;
 #X obj 113 76 pack f f;
-#N canvas 700 295 740 505 reverb 0;
+#N canvas 158 266 740 505 reverb 0;
 #X obj 162 49 inlet~;
 #X obj 144 364 outlet~;
 #X floatatom 444 156 0 0 120 0 - - -;
@@ -2295,7 +2281,7 @@
 #X connect 20 0 21 0;
 #X connect 21 0 18 0;
 #X restore 250 156 pd reverb;
-#N canvas 940 295 740 505 reverb 0;
+#N canvas 630 226 740 505 reverb 0;
 #X obj 162 49 inlet~;
 #X obj 144 364 outlet~;
 #X floatatom 444 156 0 0 120 0 - - -;
@@ -2340,9 +2326,9 @@
 #X connect 21 0 18 0;
 #X restore 379 156 pd reverb;
 #X obj 473 156 hsl 128 15 0 1 0 0 reverbWetDry reverbWetDry Reverb:_Dry_---_Wet
--2 -8 0 10 -262144 -1 -1 2100 1;
-#X obj 480 192 hsl 128 15 0 1 0 0 mgain mgain Master_Gain -2 -8 0 10
--262144 -1 -1 4100 1;
+-2 -8 0 10 -262144 -1 -1 7112 1;
+#X obj 480 192 hsl 128 15 0.01 1 0 0 mgain mgain Master_Gain -2 -8
+0 10 -262144 -1 -1 8723 1;
 #N canvas 183 60 329 243 masterGain 0;
 #X obj 84 126 *~;
 #X floatatom 104 102 5 0 0 0 - - -;
@@ -3158,9 +3144,10 @@
 #X connect 73 0 5 0;
 #X connect 75 0 39 0;
 #X restore 126 112 pd violin2;
-#X obj 520 66 loadbang;
-#X msg 450 93 1;
-#X msg 520 90 0.76;
+#X obj 528 65 loadbang;
+#X obj 439 27 loadbang;
+#X msg 521 109 0.56;
+#X msg 438 95 0.69;
 #X connect 1 0 0 0;
 #X connect 2 0 17 0;
 #X connect 3 0 8 0;
@@ -3172,10 +3159,12 @@
 #X connect 16 0 0 0;
 #X connect 17 0 3 0;
 #X connect 17 0 4 0;
-#X connect 18 0 19 0;
 #X connect 18 0 20 0;
+#X connect 18 0 5 0;
+#X connect 19 0 21 0;
 #X connect 19 0 6 0;
 #X connect 20 0 5 0;
+#X connect 21 0 6 0;
 #X restore 955 648 pd violin_inst2;
 #X text 381 366 cello uses \$1-gate;
 #X text 614 670 \$0-gate;
@@ -3273,9 +3262,9 @@
 #X connect 21 0 18 0;
 #X restore 379 156 pd reverb;
 #X obj 473 156 hsl 128 15 0 1 0 0 reverbWetDry reverbWetDry Reverb:_Dry_---_Wet
--2 -8 0 10 -262144 -1 -1 2100 1;
+-2 -8 0 10 -262144 -1 -1 7112 1;
 #X obj 480 192 hsl 128 15 0 1 0 0 mgain mgain Master_Gain -2 -8 0 10
--262144 -1 -1 4100 1;
+-262144 -1 -1 8763 1;
 #N canvas 183 60 329 243 masterGain 0;
 #X obj 84 126 *~;
 #X floatatom 104 102 5 0 0 0 - - -;
@@ -4279,27 +4268,27 @@
 #X connect 20 0 21 0;
 #X connect 21 0 18 0;
 #X restore 243 331 pd reverb;
-#X obj 317 335 hsl 128 15 0 1 0 0 reverbWetDry reverbWetDry Reverb:_Dry_---_Wet
--2 -8 0 10 -262144 -1 -1 5715 1;
-#X obj 351 368 hsl 128 15 0 1 0 0 mgain mgain Master_Gain -2 -8 0 10
--262144 -1 -1 8763 1;
+#X obj 317 335 hsl 128 15 0 1 0 0 reverbWD reverbWD Reverb:_Dry_---_Wet
+-2 -8 0 10 -262144 -1 -1 4826 1;
+#X obj 351 368 hsl 128 15 0 1 0 0 massivegain massivegain Master_Gain
+-2 -8 0 10 -262144 -1 -1 8128 1;
 #N canvas 183 60 329 243 masterGain 0;
 #X obj 84 126 *~;
 #X floatatom 104 102 5 0 0 0 - - -;
 #X obj 56 28 inlet~;
 #X obj 76 191 outlet~;
-#X obj 107 73 receive mgain;
+#X obj 107 73 receive massivegain;
 #X connect 0 0 3 0;
 #X connect 1 0 0 1;
 #X connect 2 0 0 0;
 #X connect 4 0 1 0;
 #X restore 249 366 pd masterGain;
-#N canvas 183 60 329 243 masterGain 0;
+#N canvas 530 42 329 243 masterGain 0;
 #X obj 84 126 *~;
 #X floatatom 104 102 5 0 0 0 - - -;
 #X obj 56 28 inlet~;
 #X obj 76 191 outlet~;
-#X obj 106 73 receive mgain;
+#X obj 106 73 receive massivegain;
 #X connect 0 0 3 0;
 #X connect 1 0 0 1;
 #X connect 2 0 0 0;
@@ -4324,9 +4313,9 @@
 #X obj 74 197 tabread4~ SoundData2;
 #X msg 152 45 read -resize HowtoplaySax.wav SoundData2;
 #X obj 120 12 loadbang;
-#X obj 548 299 loadbang;
-#X msg 473 309 0.45;
-#X msg 516 339 0.69;
+#X obj 460 344 loadbang;
+#X msg 410 294 0.38;
+#X msg 449 398 0.64;
 #X connect 1 0 0 1;
 #X connect 2 0 1 0;
 #X connect 3 0 8 0;
@@ -4346,13 +4335,15 @@
 #X connect 22 0 4 0;
 #X connect 23 0 10 0;
 #X connect 24 0 23 0;
-#X connect 25 0 27 0;
 #X connect 25 0 26 0;
+#X connect 25 0 5 0;
+#X connect 25 0 27 0;
+#X connect 25 0 6 0;
 #X connect 26 0 5 0;
 #X connect 27 0 6 0;
 #X restore 1153 282 pd sax2;
 #X msg 976 339 0.55 \$1 \, 0 \$1 \$1;
-#N canvas 622 22 712 522 sax3 0;
+#N canvas 347 259 712 522 sax3 0;
 #X obj 199 269 *~;
 #X obj 262 301 vline~;
 #X msg 300 276 0 1000;
@@ -4445,26 +4436,26 @@
 #X connect 21 0 18 0;
 #X restore 243 331 pd reverb;
 #X obj 317 335 hsl 128 15 0 1 0 0 reverbWetDry reverbWetDry Reverb:_Dry_---_Wet
--2 -8 0 10 -262144 -1 -1 2100 1;
-#X obj 351 368 hsl 128 15 0 1 0 0 mgain mgain Master_Gain -2 -8 0 10
--262144 -1 -1 4100 1;
+-2 -8 0 10 -262144 -1 -1 7112 1;
+#X obj 351 368 hsl 128 15 0 1 0 0 massivegain massivegain Master_Gain
+-2 -8 0 10 -262144 -1 -1 8128 1;
 #N canvas 183 60 329 243 masterGain 0;
 #X obj 84 126 *~;
 #X floatatom 104 102 5 0 0 0 - - -;
 #X obj 56 28 inlet~;
 #X obj 76 191 outlet~;
-#X obj 107 73 receive mgain;
+#X obj 107 73 receive massivegain;
 #X connect 0 0 3 0;
 #X connect 1 0 0 1;
 #X connect 2 0 0 0;
 #X connect 4 0 1 0;
 #X restore 249 366 pd masterGain;
-#N canvas 183 60 329 243 masterGain 0;
+#N canvas 513 51 329 243 masterGain 0;
 #X obj 84 126 *~;
 #X floatatom 104 102 5 0 0 0 - - -;
 #X obj 56 28 inlet~;
 #X obj 76 191 outlet~;
-#X obj 106 73 receive mgain;
+#X obj 106 73 receive massivegain;
 #X connect 0 0 3 0;
 #X connect 1 0 0 1;
 #X connect 2 0 0 0;
@@ -4489,9 +4480,6 @@
 #X obj 74 197 tabread4~ SoundData2;
 #X msg 152 45 read -resize HowtoplaySax.wav SoundData3;
 #X obj 120 12 loadbang;
-#X obj 548 299 loadbang;
-#X msg 516 339 1;
-#X msg 473 309 0.45;
 #X connect 1 0 0 1;
 #X connect 2 0 1 0;
 #X connect 3 0 8 0;
@@ -4511,10 +4499,6 @@
 #X connect 22 0 4 0;
 #X connect 23 0 10 0;
 #X connect 24 0 23 0;
-#X connect 25 0 26 0;
-#X connect 25 0 27 0;
-#X connect 26 0 6 0;
-#X connect 27 0 5 0;
 #X restore 1405 282 pd sax3;
 #X text 761 286 Sliders in saxes;
 #X floatatom 1219 475 5 0 0 0 - - -;
@@ -4743,9 +4727,9 @@
 #X connect 21 0 18 0;
 #X restore 379 156 pd reverb;
 #X obj 473 156 hsl 128 15 0 1 0 0 reverbWetDry reverbWetDry Reverb:_Dry_---_Wet
--2 -8 0 10 -262144 -1 -1 2100 1;
+-2 -8 0 10 -262144 -1 -1 7112 1;
 #X obj 480 192 hsl 128 15 0 1 0 0 mgain mgain Master_Gain -2 -8 0 10
--262144 -1 -1 4100 1;
+-262144 -1 -1 8763 1;
 #N canvas 183 60 329 243 masterGain 0;
 #X obj 84 126 *~;
 #X floatatom 104 102 5 0 0 0 - - -;
@@ -5574,6 +5558,12 @@
 #X connect 18 0 14 0;
 #X restore 1423 626 pd violin_inst4;
 #X text 261 607 Fixed!;
+#X obj 696 50 r low_health;
+#X obj 677 91 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 894 781 reverb/gain loadbang in vln2;
+#X text 1221 143 reverb/gain loadbang in sax2;
+#X msg 738 102 200;
 #X connect 1 0 42 0;
 #X connect 2 0 42 1;
 #X connect 9 0 13 0;
@@ -5716,3 +5706,6 @@
 #X connect 134 0 37 0;
 #X connect 135 0 134 0;
 #X connect 136 0 103 0;
+#X connect 138 0 139 0;
+#X connect 139 0 142 0;
+#X connect 142 0 21 0;
