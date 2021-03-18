@@ -30,8 +30,9 @@ public class BeatUI : MonoBehaviour
     void FixedUpdate() {
         // get beat
         // if = 0, reset transform to Vector3(-422.34, 18.23, 0)
-        if(beat == 0) {
-            transform.position = finishline.position;
+        if(transform.position.x >= finishline.transform.position.x) {
+            Debug.Log(beat);
+            transform.position = finishline.position.x;
         }
 
     }
