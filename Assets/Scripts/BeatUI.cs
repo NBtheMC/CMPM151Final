@@ -5,9 +5,8 @@ using UnityEngine;
 public class BeatUI : MonoBehaviour
 {
     public GameObject ShootingTiming;
-    private GameObject finishline;
-    private Vector2 direction = new Vector2(3.61f, 0);
-    private float tempo;
+    private GameObject finishline, startLine;
+    private float tempo, distance;
     private int beat;
     // Start is called before the first frame update
     void Start()
@@ -16,7 +15,9 @@ public class BeatUI : MonoBehaviour
         tempo = GameManager.Instance.getTempo();
         beat = GameManager.Instance.GetShootingTiming().GetComponent<ShootingTiming>().getBeat();
         finishline = GameObject.Find("lineStop");
-
+        startLine = GameObject.Find("lineStart");
+        transform.position = startLine.transform.position;
+        distance = finishline.transform.position.x - startLine.transform.position.x;
     }
 
     // Update is called once per frame
@@ -25,14 +26,14 @@ public class BeatUI : MonoBehaviour
         // get the tempo timing per millisecond
         // get transform of LineStart
         beat = GameManager.Instance.GetShootingTiming().GetComponent<ShootingTiming>().getBeat();
-        transform.Translate(direction / tempo * Time.deltaTime);
+        transform.Translate(distance / (tempo * 4) * Time.deltaTime, 0, 0);
     }
     void FixedUpdate() {
         // get beat
         // if = 0, reset transform to Vector3(-422.34, 18.23, 0)
         if(transform.position.x >= finishline.transform.position.x) {
             Debug.Log(beat);
-            transform.position = finishline.position.x;
+            transform.position = startLine.transform.position;
         }
 
     }
