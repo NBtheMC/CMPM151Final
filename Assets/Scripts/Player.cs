@@ -13,6 +13,7 @@ public class Player : CharaDamage
     private GameObject sax = null;
     private Vector2 hotSpot = Vector2.zero;
     private Vector2 movement;
+    private bool fastTempo = false;
 
     //angle debug stuff
     [SerializeField]
@@ -21,7 +22,7 @@ public class Player : CharaDamage
     private Vector2 thisPos, debugMouse;
 
     //Note Stuff
-    private float tempo;
+    private float tempo, baseHealth;
     private NoteType currentNote = NoteType.quarter;  //can switch between note types
     private float currentCountdown; //keeps track of when player can shoot notes again based off of tempo
     
@@ -31,6 +32,8 @@ public class Player : CharaDamage
         //shooting time based off of the tempo
         tempo = GameManager.Instance.getTempo();
         currentCountdown = 0;
+
+        baseHealth = health;
     }
 
     protected override void Update()
@@ -193,6 +196,12 @@ public class Player : CharaDamage
         {
             base.Hurt(damage, hitForce);
             OSCHandler.Instance.SendMessageToClient("pd", "/unity/hurt", 1);
+        }
+
+        if(health <= (baseHealth/2) && !fastTempo)
+        {
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/shoot/low_health", 1);
+            fastTempo = true;
         }
     }
 
