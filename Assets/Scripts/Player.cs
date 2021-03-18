@@ -210,7 +210,7 @@ public class Player : CharaDamage
 
         if(health <= (baseHealth/2) && !fastTempo)
         {
-            OSCHandler.Instance.SendMessageToClient("pd", "/unity/shoot/low_health", 1);
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/low_health", 1);
             fastTempo = true;
             GameManager.Instance.setTempo(GameManager.Instance.getTempo()/2);
         }
@@ -219,6 +219,7 @@ public class Player : CharaDamage
     protected override void Die()
     {
         damageable = false;
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/start_stop", 0);
         GameManager.Instance.FadeOn();
     }
 }

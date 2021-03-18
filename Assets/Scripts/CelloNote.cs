@@ -19,7 +19,7 @@ public class CelloNote : MonoBehaviour
         //spawn in as whole every time
         Debug.Log("whole");
         this.GetComponent<SpriteRenderer>().sprite = wholeSprite;
-        damage = 6;
+        damage = 3;
 
         rb2D = GetComponent<Rigidbody2D>();
 
