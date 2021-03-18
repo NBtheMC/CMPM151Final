@@ -1,4 +1,4 @@
-#N canvas -8 -8 1920 997 12;
+#N canvas -1928 79 1920 997 12;
 #X obj 145 591 dac~;
 #X obj 158 433 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -126,12 +126,12 @@
 #X connect 52 0 54 0;
 #X connect 53 0 52 0;
 #X restore 47 142 pd oscReceive;
-#X obj 47 36 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+#X obj 47 36 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
 ;
 #X msg 47 61 \; pd dsp \$1;
 #X obj 44 278 oscformat PD message;
 #X msg 76 239 set PD message;
-#N canvas 309 314 450 300 oscSend 1;
+#N canvas 309 314 450 300 oscSend 0;
 #X msg 158 207 disconnect;
 #X obj 61 253 netsend -u -b;
 #X obj 59 55 list prepend send;
@@ -214,12 +214,12 @@
 #X restore 533 204 pd cello_notes;
 #X floatatom 533 252 5 0 0 0 bass_line - -;
 #X obj 533 135 tgl 15 0 empty empty Start/stop 17 7 0 10 -262144 -1
--1 0 1;
+-1 1 1;
 #X obj 1064 82 * 2;
 #X obj 1188 82 * 4;
 #X floatatom 1064 111 5 0 0 0 half_tempo - -;
 #X floatatom 1188 112 5 0 0 0 whole_tempo - -;
-#N canvas 127 49 628 610 sax_whole_notes 0;
+#N canvas -8 -8 1920 997 sax_whole_notes 0;
 #X obj 173 59 inlet;
 #X obj 220 58 inlet;
 #X obj 173 100 metro;

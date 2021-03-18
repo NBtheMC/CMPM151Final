@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     //tempo stuff
     [SerializeField]
-    private float tempo = 0.3f, fadeTime = 5; //each beat, in seconds
+    private float tempo = 0.4f, fadeTime = 5; //each beat, in seconds
     private float fadeLerp = 0;
     private bool fadeOff = true; 
 

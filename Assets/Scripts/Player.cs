@@ -6,6 +6,8 @@ public enum NoteType { quarter, half, whole };
 public class Player : CharaDamage
 {
     [SerializeField]
+    private GameObject shootingTiming;
+    [SerializeField]
     private GameObject musicBullet = null;
     [SerializeField]
     private Transform firePoint = null;
@@ -29,11 +31,19 @@ public class Player : CharaDamage
 
     protected void Start()
     {
+        shootingTiming = GameManager.Instance.GetShootingTiming();
+        shootingTiming.GetComponent<ShootingTiming>().OnChangeTempo += Player_OnChangeTempo;  
         //shooting time based off of the tempo
         tempo = GameManager.Instance.getTempo();
         currentCountdown = 0;
 
         baseHealth = health;
+    }
+
+    //set stuff up when tempo changes
+    private void Player_OnChangeTempo(object sender, System.EventArgs e)
+    {
+        tempo = shootingTiming.GetComponent<ShootingTiming>().getTempo();
     }
 
     protected override void Update()
@@ -202,6 +212,7 @@ public class Player : CharaDamage
         {
             OSCHandler.Instance.SendMessageToClient("pd", "/unity/shoot/low_health", 1);
             fastTempo = true;
+            GameManager.Instance.setTempo(GameManager.Instance.getTempo()/2);
         }
     }
 

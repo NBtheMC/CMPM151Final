@@ -10,6 +10,7 @@ public class ShootingTiming : MonoBehaviour
     private float tempo;
     private int beat = 4; //either 1,2,3, or 4. used to shoot appropriate event
     public event EventHandler OnBeat; //when beat happens
+    public event EventHandler OnChangeTempo; //when tempo changes
     private float aheadCountdown; //when gets to 0 turns on perfect
     private float behindCountdown; //when gets to 0 turns off perfect
     private bool perfect = false; //rewards player for shooting on beat
@@ -28,6 +29,7 @@ public class ShootingTiming : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //perfect stuff
         if (aheadCountdown > 0)
         {
             aheadCountdown -= Time.deltaTime;
@@ -46,15 +48,22 @@ public class ShootingTiming : MonoBehaviour
             perfect = false;
             behindCountdown = tempo;
         }
+
+        //on beat stuff
         if (tempo > 0)
         {
             tempo -= Time.deltaTime;
         }
         else
         {
-            //update tempo on beat
-            tempo = GameManager.Instance.getTempo();
-            //set beat
+            //change tempo
+            if(tempo != GameManager.Instance.getTempo())
+            {
+                tempo = GameManager.Instance.getTempo();
+                OnChangeTempo?.Invoke(this,EventArgs.Empty);
+            }
+            
+            //set beat based on tempo
             beat = (beat%4)+1;
             //shoot based on beat
             OnBeat?.Invoke(this,EventArgs.Empty); //calls onbeat event if its not null
@@ -71,6 +80,15 @@ public class ShootingTiming : MonoBehaviour
         Debug.Log("Beat: " + getBeat());
     }
    
+    //make sure everything stays on beat
+    public void setTempo(float newTempo)
+    {
+        tempo = newTempo;
+    }
+    public float getTempo()
+    {
+        return tempo;
+    }
     public int getBeat()
     {
         return beat;

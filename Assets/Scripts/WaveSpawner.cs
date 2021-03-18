@@ -54,10 +54,9 @@ public class WaveSpawner : MonoBehaviour
                 yield return new WaitForSeconds(spawnRate);
             }
             yield return new WaitForSeconds(timeBetweenWaves);
+            //spawn cello between waves
+            GameObject celloEnemy = Instantiate(cello);
         }
-        //spawn cello
-        GameObject celloEnemy = Instantiate(cello);
-
         waveIsDone = true;
     }
 }
