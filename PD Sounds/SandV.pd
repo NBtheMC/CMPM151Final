@@ -10,7 +10,7 @@
 #X text 164 87 3 Set OSC Addresses (routing osc data;
 #X text 155 26 Key Settings;
 #X floatatom 43 194 5 0 0 0 - - -;
-#N canvas 448 48 1241 737 oscReceive 0;
+#N canvas -1261 188 1241 737 oscReceive 0;
 #X obj 55 184 netreceive -u -b;
 #X msg 78 143 listen 0;
 #X text 152 143 stop listening;
@@ -35,44 +35,48 @@
 -1 -1;
 #X obj 234 364 route start_stop;
 #X obj 235 414 s start_stop;
-#X obj 484 361 route shoot;
-#X obj 484 396 route cello;
-#X obj 450 465 route violin1;
-#X obj 551 464 route violin2;
-#X obj 653 464 route violin3;
-#X obj 755 465 route violin4;
-#X obj 484 417 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 685 364 route shoot;
+#X obj 685 399 route cello;
+#X obj 651 468 route violin1;
+#X obj 752 467 route violin2;
+#X obj 854 467 route violin3;
+#X obj 956 468 route violin4;
+#X obj 685 420 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 484 434 s cello;
-#X obj 450 488 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 685 437 s cello;
+#X obj 651 491 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 450 505 s violin1;
-#X obj 552 487 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 651 508 s violin1;
+#X obj 753 490 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 552 504 s violin2;
-#X obj 653 486 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 753 507 s violin2;
+#X obj 854 489 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 654 503 s violin3;
-#X obj 755 486 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 855 506 s violin3;
+#X obj 956 489 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 756 503 s violin4;
-#X obj 576 415 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 957 506 s violin4;
+#X obj 777 418 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 576 394 route whole_sax;
-#X obj 576 432 s whole_sax;
-#X obj 697 414 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 777 397 route whole_sax;
+#X obj 777 435 s whole_sax;
+#X obj 898 417 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 697 393 route half_sax;
-#X obj 697 431 s half_sax;
-#X obj 806 413 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 898 396 route half_sax;
+#X obj 898 434 s half_sax;
+#X obj 1007 416 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 806 392 route quarter_sax;
-#X obj 806 430 s quarter_sax;
+#X obj 1007 395 route quarter_sax;
+#X obj 1007 433 s quarter_sax;
 #X text 150 114 listen on port 6162;
 #X obj 377 362 route hurt;
 #X obj 377 388 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 377 411 s hurt;
+#X obj 474 385 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 474 359 route low_health;
+#X obj 476 407 s low_health;
 #X connect 0 0 6 0;
 #X connect 0 0 7 0;
 #X connect 1 0 0 0;
@@ -85,6 +89,7 @@
 #X connect 11 0 21 0;
 #X connect 11 0 23 0;
 #X connect 11 0 49 0;
+#X connect 11 0 53 0;
 #X connect 12 0 14 0;
 #X connect 14 0 0 0;
 #X connect 15 0 9 0;
@@ -118,13 +123,15 @@
 #X connect 46 0 45 0;
 #X connect 49 0 50 0;
 #X connect 50 0 51 0;
+#X connect 52 0 54 0;
+#X connect 53 0 52 0;
 #X restore 47 142 pd oscReceive;
-#X obj 47 36 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+#X obj 47 36 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
 #X msg 47 61 \; pd dsp \$1;
 #X obj 44 278 oscformat PD message;
 #X msg 76 239 set PD message;
-#N canvas 309 314 450 300 oscSend 0;
+#N canvas 309 314 450 300 oscSend 1;
 #X msg 158 207 disconnect;
 #X obj 61 253 netsend -u -b;
 #X obj 59 55 list prepend send;
